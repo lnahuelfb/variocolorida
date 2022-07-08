@@ -1,0 +1,12 @@
+@import url(../../variables.css);
+
+.container {
+  width: var(--width);
+  padding: var(--padding);
+  height: 250px;
+  background-color: aquamarine;
+}
+
+.title {
+  margin: 0;
+}
