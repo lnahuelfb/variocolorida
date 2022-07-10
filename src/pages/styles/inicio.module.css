@@ -12,7 +12,7 @@
 }
 
 .bienvenida{
-  width: calc(60% - 7.5rem);
+  width: 60%;
   font-size: 1.6rem;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .imageContainer {
-  width: calc(40% - 7.5rem);
+  width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;

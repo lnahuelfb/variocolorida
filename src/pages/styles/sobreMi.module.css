@@ -3,11 +3,21 @@
 .container {
   width: var(--width);
   padding: var(--padding);
-  height: 250px;
-  background-color: aquamarine;
+  background-color: white;
 }
 
 .title {
-  margin: 0;
-  padding-top: 10.4rem;
+    font-size: 3rem;
+    text-align: start;
+    color: var(--morado);
+    padding-top: 10.4rem;
+    margin-bottom: .8rem;
+    margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: var(--responsive-width);
+    padding: var(--responsive-padding);
+  }
 }
