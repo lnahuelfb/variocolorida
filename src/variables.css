@@ -2,5 +2,7 @@
   --padding: 0 7.5rem;
   --width: calc(100% - 15rem);
   --blanchedalmond: #f9f4ea;
-  --morado: #392b58
+  --morado: #392b58;
+  --responsive-width: calc(100% - 5rem);
+  --responsive-padding: 0 2.5rem;
 }
