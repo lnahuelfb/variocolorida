@@ -1,9 +1,10 @@
-import React from 'react'
+import styles from './styles/trabajos.module.css'
+
 
 const Trabajos = () => {
   return (
-    <div id='trabajos'>
-      <h1>
+    <div className={styles.container}>
+      <h1 id='trabajos' className={styles.title}>
         Trabajos
       </h1>    
     </div>

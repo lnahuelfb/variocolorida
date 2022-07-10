@@ -1,0 +1,12 @@
+.title {
+  margin: 0;
+}
+
+.container {
+  background-color: red;
+  height: 500px;
+  color: white;
+  width: var(--width);
+  padding: var(--padding);
+  padding-top: 10.4rem;
+}

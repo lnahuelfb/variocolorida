@@ -1,14 +1,47 @@
 @import url(../../variables.css);
 
-.title {
-  margin: 0;
-}
-
-.inicio {
-  background-color: black;
-  height: 500px;
-  color: white;
+.container {
   width: var(--width);
   padding: var(--padding);
-  margin-top: 10.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  color: black;
+  background-color: white;
+}
+
+.bienvenida{
+  width: 60%;
+  font-size: 1.6rem;
+}
+
+.bienvenida p {
+  margin-top: 5rem;
+  width: 75%;
+}
+
+.bienvenida span {
+  font-weight: bold;
+}
+
+.title {
+  font-size: 4rem;
+  text-align: start;
+  color: var(--morado);
+  margin-bottom: .8rem;
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.imageContainer {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 100%;
 }

@@ -1,0 +1,12 @@
+.title {
+  padding-top: 10.4rem;
+  margin: 0;
+}
+
+.container {
+  background-color: yellow;
+  height: 500px;
+  color: white;
+  width: var(--width);
+  padding: var(--padding);
+}

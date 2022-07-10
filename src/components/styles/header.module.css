@@ -7,7 +7,7 @@
   width: var(--width);
   min-width: 320px;
   padding: var(--padding);
-  position: fixed;
+  position: sticky;
   top: 0;
   background-color: var(--blanchedalmond);
 }
@@ -38,7 +38,7 @@
 }
 
 .links {
-  color: #392b58;
+  color: var(--morado);
   text-decoration: none;
 }
 
@@ -57,7 +57,7 @@
   padding: inherit;
   top: 10.4rem;
   background-color: var(--blanchedalmond);
-  border: 1px solid violet;
+  border: 1px solid var(--morado);
   border-top: 0;
   border-radius: 0 0 25px 25px;
 }
@@ -75,7 +75,6 @@
   font-size: 1.6rem;
   width: 7rem;
   padding: 0 5rem;
-  list-style: none;
   height: 100%;
 }
 

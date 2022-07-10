@@ -1,9 +1,9 @@
-import React from 'react'
+import styles from './styles/contacto.module.css'
 
 const Contacto = () => {
   return (
-    <div id='contacto'>
-      <h1>
+    <div  className={styles.container}>
+      <h1 id='contacto' className={styles.title}>
         contacto
       </h1>
     </div>

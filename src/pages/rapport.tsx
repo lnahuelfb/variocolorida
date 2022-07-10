@@ -1,9 +1,7 @@
-import React from 'react'
-
-const rapport = () => {
+const Rapport = () => {
   return (
-    <div>rapport</div>
+    <div>Rapport</div>
   )
 }
 
-export default rapport
+export default Rapport
