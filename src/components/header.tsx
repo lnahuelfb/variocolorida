@@ -13,15 +13,15 @@ const Header = () => {
           fontSize: '2.5rem'
         }
       }}>
-        
+
         <figure className={styles.imageContainer}>
           <img src={logo} alt="Logo de variocolorida" className={styles.logoImage} />
         </figure>
 
         <label htmlFor='menu' className={styles.burgerContainer}>
-          <FaBars/>
+          <FaBars />
         </label>
-        <input type="checkbox" id="menu" className={styles.input}/>
+        <input type="checkbox" id="menu" className={styles.input} />
 
         <ul className={styles.items}>
           <li className={styles.item} >
@@ -40,7 +40,7 @@ const Header = () => {
             <a href="#trabajos" className={styles.links}>
               Trabajos
             </a>
-          
+
             <ul className={styles.menuTrabajos}>
               <li>
                 <a href="#identidad" className={styles.links}>Identidad</a>
@@ -54,13 +54,13 @@ const Header = () => {
             </ul>
           </li>
 
-            <li className={styles.item}>
-              <a href="#contacto" className={styles.links}>
-                Contacto
-              </a>
-            </li>
+          <li className={styles.item}>
+            <a href="#contacto" className={styles.links}>
+              Contacto
+            </a>
+          </li>
 
-          </ul>
+        </ul>
       </IconContext.Provider>
     </header>
   )

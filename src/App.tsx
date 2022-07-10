@@ -11,7 +11,7 @@ function App() {
       <Inicio />
       <SobreMi />
       <Trabajos />
-      <Contacto/>
+      <Contacto />
     </div>
   )
 }

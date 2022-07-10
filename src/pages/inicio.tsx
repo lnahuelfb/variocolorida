@@ -11,10 +11,10 @@ const Inicio = () => {
         </p>
       </div>
 
-        <figure className={styles.imageContainer}>
-          <img src={yo} alt="Agustina Pedemonte" className={styles.image} />
-        </figure>
-      
+      <figure className={styles.imageContainer}>
+        <img src={yo} alt="Agustina Pedemonte" className={styles.image} />
+      </figure>
+
     </section>
   )
 }

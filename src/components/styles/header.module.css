@@ -100,7 +100,7 @@
     align-items: center;
     cursor: pointer;
   }
-  
+
   .burger {
     height: 100%;
   }
@@ -119,10 +119,10 @@
     transition: .5s ease-in-out;
   }
 
-  .input:checked + .items{
+  .input:checked+.items {
     left: 0;
   }
-  
+
   .item {
     height: 5rem;
   }
