@@ -26,7 +26,7 @@ const Header = () => {
           <FaBars />
         </label>
 
-        <ul className={isOpen ? styles.items : styles.itemsOpen}>
+        <ul className={isOpen ? styles.itemsOpen : styles.items}>
           <li className={styles.item} >
             <a href="#inicio" className={styles.links} onClick={() => setisOpen(!isOpen)}>
               Inicio
