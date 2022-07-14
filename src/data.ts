@@ -9,7 +9,7 @@ interface secciones {
 
 export const secciones: secciones[] = [
   {
-    name: 'Ilustracion',
+    name: 'Ilustración',
     image: ilustracion,
   },
   {

@@ -10,12 +10,11 @@ const Trabajos = () => {
         Trabajos
       </h1>
 
-      <div className={styles.cardContainer}>
+      <div className={styles.cardsContainer}>
         {
           secciones.map(seccion => <Card name={seccion.name} image={seccion.image} key={seccion.name} />)
         }
       </div>
-
 
     </div>
   )

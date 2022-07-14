@@ -13,7 +13,7 @@ const Card = ({ name, image }: props) => {
         <img src={image} alt={name} className={styles.image} />
       </figure>
       
-      <h2>{name}</h2>
+      <h2 className={styles.title}>{name}</h2>
     </div>
   )
 }

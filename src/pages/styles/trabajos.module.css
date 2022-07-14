@@ -1,9 +1,22 @@
-.title {
-  padding-top: 10.4rem;
-  margin: 0;
-}
+@import url(../../variables.css);
 
 .container {
   width: var(--width);
   padding: var(--padding);
 }
+
+.title {
+  font-size: 3rem;
+  padding-top: 10.4rem;
+  margin-bottom: var(--margin-bottom-title);
+  color: var(--morado);
+}
+
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
