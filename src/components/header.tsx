@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { IconContext } from 'react-icons'
 import { FaBars } from 'react-icons/fa'
 import logo from '/images/logo.png'
@@ -5,6 +7,8 @@ import logo from '/images/logo.png'
 import styles from './styles/header.module.css'
 
 const Header = () => {
+
+  const [isOpen, setisOpen] = useState(false)
 
   return (
     <header className={styles.container}>
@@ -18,44 +22,43 @@ const Header = () => {
           <img src={logo} alt="Logo de variocolorida" className={styles.logoImage} />
         </figure>
 
-        <label htmlFor='menu' className={styles.burgerContainer}>
+        <label htmlFor='menu' className={styles.burgerContainer} onClick={() => setisOpen(!isOpen)}>
           <FaBars />
         </label>
-        <input type="checkbox" id="menu" className={styles.input} />
 
-        <ul className={styles.items}>
+        <ul className={isOpen ? styles.items : styles.itemsOpen}>
           <li className={styles.item} >
-            <a href="#inicio" className={styles.links}>
+            <a href="#inicio" className={styles.links} onClick={() => setisOpen(!isOpen)}>
               Inicio
             </a>
           </li>
 
           <li className={styles.item}>
-            <a href="#sobreMi" className={styles.links}>
+            <a href="#sobreMi" className={styles.links} onClick={() => setisOpen(!isOpen)}>
               Sobre mi
             </a>
           </li>
 
           <li className={styles.item} id={styles.trabajos}>
-            <a href="#trabajos" className={styles.links}>
+            <a href="#trabajos" className={styles.links} onClick={() => setisOpen(!isOpen)}>
               Trabajos
             </a>
 
             <ul className={styles.menuTrabajos}>
               <li>
-                <a href="#identidad" className={styles.links}>Identidad</a>
+                <a href="#identidad" className={styles.links} onClick={() => setisOpen(!isOpen)}>Identidad</a>
               </li>
               <li>
-                <a href="#ilustracion" className={styles.links}>Ilustracion</a>
+                <a href="#ilustracion" className={styles.links} onClick={() => setisOpen(!isOpen)}>Ilustracion</a>
               </li>
               <li>
-                <a href="#rapport" className={styles.links}>Rapport</a>
+                <a href="#rapport" className={styles.links} onClick={() => setisOpen(!isOpen)}>Rapport</a>
               </li>
             </ul>
           </li>
 
           <li className={styles.item}>
-            <a href="#contacto" className={styles.links}>
+            <a href="#contacto" className={styles.links} onClick={() => setisOpen(!isOpen)}>
               Contacto
             </a>
           </li>
