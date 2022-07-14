@@ -4,9 +4,6 @@
 }
 
 .container {
-  background-color: yellow;
-  height: 500px;
-  color: white;
   width: var(--width);
   padding: var(--padding);
 }
