@@ -46,10 +46,10 @@ const Header = () => {
 
             <ul className={styles.menuTrabajos}>
               <li>
-                <a href="#identidad" className={styles.links} onClick={() => setisOpen(!isOpen)}>Identidad</a>
+                <a href="#ilustracion" className={styles.links} onClick={() => setisOpen(!isOpen)}>Ilustracion</a>
               </li>
               <li>
-                <a href="#ilustracion" className={styles.links} onClick={() => setisOpen(!isOpen)}>Ilustracion</a>
+                <a href="#identidad" className={styles.links} onClick={() => setisOpen(!isOpen)}>Identidad</a>
               </li>
               <li>
                 <a href="#rapport" className={styles.links} onClick={() => setisOpen(!isOpen)}>Rapport</a>
