@@ -1,0 +1,14 @@
+.container {
+  width: 30rem;
+  margin: 2rem;
+}
+
+.imagen {
+  width: 100%;
+}
+
+@media screen and (max-width: 425px) {
+  .container {
+    margin: 0;
+  }
+}

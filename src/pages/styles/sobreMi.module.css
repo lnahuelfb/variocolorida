@@ -7,7 +7,7 @@
 }
 
 .title {
-  font-size: 3rem;
+  font-size: var(--title-font-size);
   text-align: start;
   color: var(--morado);
   padding-top: 10.4rem;
@@ -22,10 +22,9 @@
 .subtitle {
   margin-top: 0;
   margin-bottom: 3rem;
-  font-size: 3rem;
-  font-weight: 500;
+  font-size: var(--subtitle-font-size);
   line-height: 1.2;
-  color: #9379ac;
+  color: var(--violeta);
 }
 
 .herramientas {
