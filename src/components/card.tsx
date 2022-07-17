@@ -1,19 +1,18 @@
+import { cards } from '../interfaces'
 import styles from './styles/card.module.css'
 
-interface props {
-  name: string,
-  image: string
-}
 
-const Card = ({ name, image }: props) => {
+const Card = ({ name, image, link }: cards) => {
   return (
     <div className={styles.container}>
-
       <figure className={styles.imageContainer}>
         <img src={image} alt={name} className={styles.image} />
       </figure>
 
-      <h2 className={styles.title}>{name}</h2>
+      <h2 className={styles.title}>
+        <a href={`#${link}`} className={styles.link}>{name}</a>
+      </h2>
+
     </div>
   )
 }

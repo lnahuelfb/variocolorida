@@ -1,11 +1,8 @@
+import { trabajos } from '../interfaces'
 import styles from './styles/trabajos-imagenes.module.css'
 
-interface props {
-  name: string,
-  image: string
-}
 
-const Imagenes = ({ name, image }: props) => {
+const Imagenes = ({ name, image }: trabajos) => {
   return (
     <figure className={styles.container}>
       <img className={styles.imagen} src={image} alt={name} />

@@ -1,3 +1,5 @@
+import { trabajos, cards } from './interfaces'
+
 import yo from '/images/yo.jpg'
 import catradiys from '/images/catradiys.jpeg'
 import toto from '/images/toto.jpeg'
@@ -16,27 +18,29 @@ import r1 from '/images/r1.jpg'
 import r2 from '/images/r2.jpg'
 import r3 from '/images/r3.jpg'
 
-interface secciones {
-  name: string,
-  image: string
-}
 
-export const secciones: secciones[] = [
+export const secciones: cards[] = [
   {
     name: 'Ilustración',
     image: ilustracion,
-  },
-  {
-    name: 'Rapport',
-    image: r2
+    link: 'ilustracion',
+    description: 'Diseño e ilustración de personajes, escenografías, paisajes, bocetos solos o combinados con texto.'
   },
   {
     name: 'Identidad',
-    image: omnitype
+    image: omnitype,
+    link: 'identidad',
+    description: 'Diseños de estampas, módulos enfocados en potenciar la identidad de cada cliente.'
+  },
+  {
+    name: 'Rapport',
+    image: r2,
+    link: 'rapport',
+    description: 'Diseños de estampas, módulos enfocados en potenciar la identidad de cada cliente.'
   }
 ]
 
-export const ilustraciones: secciones[] = [
+export const ilustraciones: trabajos[] = [
   {
     name: "autorretrato",
     image: yo
@@ -63,7 +67,7 @@ export const ilustraciones: secciones[] = [
   }
 ]
 
-export const Identidad: secciones[] = [
+export const Identidad: trabajos[] = [
   {
     name: 'Uniques',
     image: uniques
@@ -90,7 +94,7 @@ export const Identidad: secciones[] = [
   }
 ]
 
-export const Rapport: secciones[] = [
+export const Rapport: trabajos[] = [
   {
     name: 'Ravenclaw',
     image: r1

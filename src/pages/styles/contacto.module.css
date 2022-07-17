@@ -1,11 +1,13 @@
+@import url(../../variables.css);
+
 .title {
-  margin: 0;
+  font-size: var(--title-font-size);
+  color: var(--morado);
+  padding-top: var(--padding-top-title);
+  margin-bottom: var(--margin-bottom-title);
 }
 
 .container {
-  background-color: red;
-  height: 500px;
-  color: white;
   width: var(--width);
   padding: var(--padding);
   padding-top: 10.4rem;
