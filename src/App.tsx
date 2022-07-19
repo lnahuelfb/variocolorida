@@ -1,3 +1,4 @@
+import Footer from './components/footer'
 import Header from './components/header'
 import Contacto from './pages/contacto'
 import Inicio from './pages/inicio'
@@ -12,6 +13,7 @@ function App() {
       <SobreMi />
       <Trabajos />
       <Contacto />
+      <Footer />
     </div>
   )
 }
