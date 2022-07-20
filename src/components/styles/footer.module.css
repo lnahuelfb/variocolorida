@@ -36,6 +36,7 @@
 }
 
 .pie p {
+  font-size: .8rem;
   color: bisque;
   margin: 0;
 }
@@ -49,10 +50,5 @@
   .container {
     width: var(--responsive-width);
     padding: var(--responsive-padding);
-  }
-
-  .pie {
-    flex-direction: column;
-    text-align: center;
   }
 }
