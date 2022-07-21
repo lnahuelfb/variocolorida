@@ -1,0 +1,126 @@
+@import url(/styles/globals.css);
+
+.container {
+  width: var(--width);
+  padding: var(--padding);
+  background-color: white;
+}
+
+.title {
+  font-size: var(--title-font-size);
+  text-align: start;
+  color: var(--morado);
+  padding-top: 10.4rem;
+  margin-bottom: .8rem;
+  margin: 0;
+}
+
+.text {
+  margin: 3rem 0;
+}
+
+.subtitle {
+  margin-top: 0;
+  margin-bottom: 3rem;
+  font-size: var(--subtitle-font-size);
+  line-height: 1.2;
+  color: var(--violeta);
+}
+
+.herramientas {
+  font-size: 1.6rem;
+  margin-bottom: 3rem;
+}
+
+.herramientas p {
+  margin-bottom: .5rem;
+}
+
+.programa,
+.programa50,
+.programa70,
+.programa80 {
+  display: flex;
+  align-items: center;
+  width: 17rem;
+  height: 3rem;
+  background-color: var(--morado);
+  padding: .5rem;
+  color: blanchedalmond;
+  animation-name: programa;
+  animation-timing-function: ease-in;
+  animation-duration: 2s;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+  border-radius: .4rem;
+  margin-bottom: 1rem;
+}
+
+.programa {
+  animation-name: programa;
+}
+
+@keyframes programa {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 90%;
+    background-color: var(--morado);
+  }
+}
+
+.programa50 {
+  animation-name: programa50;
+}
+
+@keyframes programa50 {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 45%;
+    background-color: var(--morado);
+  }
+}
+
+.programa70 {
+  animation-name: programa70;
+}
+
+
+@keyframes programa70 {
+  0% {
+    width: 0px;
+  }
+
+  100% {
+    width: 70%;
+    background-color: var(--morado);
+  }
+}
+
+.programa80 {
+  animation-name: programa80;
+}
+
+
+@keyframes programa80 {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 80%;
+    background-color: var(--morado);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: var(--responsive-width);
+    padding: var(--responsive-padding);
+  }
+}

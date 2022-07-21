@@ -1,0 +1,7 @@
+@import url(/styles/globals.css);
+
+.container {
+  width: var(--width);
+  padding: var(--padding);
+  font-size: 2.4rem;
+}

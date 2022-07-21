@@ -1,0 +1,150 @@
+@import url(/styles/globals.css);
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  height: 10.4rem;
+  width: var(--width);
+  padding: var(--padding);
+  position: sticky;
+  top: 0;
+  background-color: var(--blanchedalmond);
+}
+
+.burgerContainer {
+  display: none;
+}
+
+.burgerContainer svg {
+  fill: #392b58;
+}
+
+.imageContainer {
+  margin: 0;
+}
+
+.logoImage {
+  height: 100%;
+}
+
+.items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.itemsOpen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.links {
+  color: var(--morado);
+  text-decoration: none;
+}
+
+.menuTrabajos {
+  display: none;
+}
+
+#trabajos:hover .menuTrabajos {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-evenly;
+  position: absolute;
+  height: 20rem;
+  width: inherit;
+  padding: inherit;
+  top: 10.4rem;
+  background-color: var(--blanchedalmond);
+  border: 1px solid var(--morado);
+  border-top: 0;
+  border-radius: 0 0 25px 25px;
+}
+
+#trabajos:hover .menuTrabajos li {
+  list-style: none;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 1.6rem;
+  width: 7rem;
+  padding: 0 5rem;
+  height: 100%;
+}
+
+@media screen and (max-width: 920px) {
+  .burgerContainer {
+    width: 100px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .burger {
+    height: 100%;
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 10.4rem);
+    width: 100%;
+    justify-content: space-evenly;
+    position: fixed;
+    top: 10.4rem;
+    left: -100%;
+    bottom: 0;
+    background-color: var(--blanchedalmond);
+    transition: .5s ease-in-out;
+  }
+
+  .itemsOpen {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 10.4rem);
+    width: 100%;
+    justify-content: space-evenly;
+    position: fixed;
+    top: 10.4rem;
+    left: 0%;
+    bottom: 0;
+    background-color: var(--blanchedalmond);
+    transition: .5s ease-in-out;
+  }
+
+  #trabajos:hover .menuTrabajos {
+    display: none;
+  }
+
+  .item {
+    height: 5rem;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding: 0;
+  }
+
+  .imageContainer {
+    padding: 0 2.5rem;
+  }
+}

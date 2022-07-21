@@ -1,0 +1,75 @@
+@import url(/styles/globals.css);
+
+.title {
+  font-size: var(--title-font-size);
+  color: var(--morado);
+  padding-top: var(--padding-top-title);
+  margin-bottom: var(--margin-bottom-title);
+}
+
+.container {
+  width: var(--width);
+  padding: var(--padding);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input {
+  height: 2.5rem;
+  margin: 1rem 0;
+  padding: .5rem 1.5rem;
+  border-radius: .5rem;
+  border: .1rem solid #ced4da;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  color: #212529;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.input:focus {
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.4rem rgb(13 110 253 / 25%);
+}
+
+.button {
+  width: fit-content;
+  padding: .6rem 1.2rem;
+  margin-top: 1rem;
+  background-color: var(--morado);
+  color: white;
+  margin-bottom: 2rem;
+  border: 0;
+  border-radius: .5rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.button:active {
+  color: var(--morado);
+  background-color: var(--blanchedalmond);
+  border-color: var(--morado);
+  box-shadow: 0 0 0 0.4rem rgb(13 110 253 / 25%)
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: var(--responsive-width);
+    padding: var(--responsive-padding);
+  }
+
+  .input {
+    width: calc(100% - 3.2rem)
+  }
+
+  .button {
+    width: 100%;
+  }
+}

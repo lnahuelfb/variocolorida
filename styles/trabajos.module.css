@@ -1,0 +1,58 @@
+@import url(/styles/globals.css);
+
+.container {
+  width: var(--width);
+  padding: var(--padding);
+  padding-bottom: 2rem;
+}
+
+.title {
+  font-size: var(--title-font-size);
+  padding-top: 10.4rem;
+  margin-bottom: var(--margin-bottom-title);
+  color: var(--morado);
+}
+
+.subtitle {
+  font-size: var(--subtitle-font-size);
+  margin-bottom: var(--margin-bottom-title);
+  padding-top: var(--padding-top-title);
+  color: var(--violeta);
+}
+
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.trabajosContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 849px) {
+  .cardsContainer {
+    flex-direction: column;
+  }
+
+  .trabajosContainer {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: var(--responsive-width);
+    padding: var(--responsive-padding);
+  }
+
+  .cardsContainer {
+    justify-content: center;
+  }
+
+}
