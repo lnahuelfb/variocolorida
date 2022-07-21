@@ -39,8 +39,6 @@ export const getStaticProps = async () => {
     const data = await fetch(`${api}${seccion}`)
     const finalData = await data.json()
 
-    console.log(finalData)
-
     return JSON.parse(JSON.stringify(finalData))
   }
 
