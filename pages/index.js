@@ -6,7 +6,7 @@ import Trabajos from '../components/trabajos'
 import Contacto from '../components/contacto'
 import Footer from '../components/footer'
 
-export default function Home(props) {
+export default function Home({ secciones, ilustraciones, identidad, rapport }) {
 
   return (
     <>
@@ -22,7 +22,7 @@ export default function Home(props) {
         <Header />
         <Inicio />
         <SobreMi />
-        <Trabajos props={props} />
+        <Trabajos secciones={secciones} ilustraciones={ilustraciones} identidad={identidad} rapport={rapport} />
         <Contacto />
         <Footer />
       </div>
@@ -38,7 +38,9 @@ export const getStaticProps = async () => {
     const data = await fetch(`${api}${seccion}`)
     const finalData = await data.json()
 
-    return finalData
+    console.log(finalData)
+
+    return JSON.parse(JSON.stringify(finalData))
   }
 
   try {
@@ -55,13 +57,14 @@ export const getStaticProps = async () => {
         rapport
       }
     }
-
+    
   } catch (error) {
-    console.error(error.status)
-    return {
-      props: {
-        error
-      }
+    console.log(error)
+  }
+
+  return {
+    props: {
+      error: true
     }
   }
 }

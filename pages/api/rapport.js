@@ -31,7 +31,7 @@ const handler = (req, res) => {
 
     return res.status(201).send('Post agregado a Rapport!')
   }
-  res.status(200).send(rapport)
+  res.status(200).json(rapport)
 }
 
 export default handler

@@ -20,5 +20,5 @@ const secciones = [
 ]
 
 export default function handler(req, res) {
-  res.status(200).send(secciones)
+  res.status(200).json(secciones)
 }

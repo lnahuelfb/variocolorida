@@ -3,9 +3,9 @@ import Card from './card'
 import styles from '/styles/trabajos.module.css'
 import Imagenes from './trabajos-imagenes'
 
-const Trabajos = ({props}) => {
+const Trabajos = ({ secciones, ilustraciones, identidad, rapport }) => {
 
-  const { secciones, ilustraciones, identidad, rapport } = props
+  // const { secciones, ilustraciones, identidad, rapport } = props
 
   return (
     <div className={styles.container}>
@@ -15,7 +15,7 @@ const Trabajos = ({props}) => {
 
       <div className={styles.cardsContainer}>
         {
-          secciones.map(({ name, image, link, description }) => (
+          secciones && secciones.map(({ name, image, link, description }) => (
             <Card name={name} image={image} link={link} description={description} key={name} />
           ))
         }
@@ -25,7 +25,7 @@ const Trabajos = ({props}) => {
 
       <div className={styles.trabajosContainer}>
         {
-          ilustraciones.map(ilustracion => <Imagenes name={ilustracion.name} image={ilustracion.image} key={ilustracion.name} />)
+          ilustraciones && ilustraciones.map(ilustracion => <Imagenes name={ilustracion.name} image={ilustracion.image} key={ilustracion.name} />)
         }
       </div>
 
@@ -33,7 +33,7 @@ const Trabajos = ({props}) => {
 
       <div className={styles.trabajosContainer}>
         {
-          identidad.map(identidad => <Imagenes name={identidad.name} image={identidad.image} key={identidad.name} />)
+          identidad && identidad.map(identidad => <Imagenes name={identidad.name} image={identidad.image} key={identidad.name} />)
         }
       </div>
 
@@ -41,7 +41,7 @@ const Trabajos = ({props}) => {
 
       <div className={styles.trabajosContainer}>
         {
-          rapport.map(rapport => <Imagenes name={rapport.name} image={rapport.image} key={rapport.name} />)
+          rapport && rapport.map(rapport => <Imagenes name={rapport.name} image={rapport.image} key={rapport.name} />)
         }
       </div>
 

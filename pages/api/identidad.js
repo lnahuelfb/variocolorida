@@ -44,7 +44,7 @@ const handler = (req, res) => {
     return res.status(201).send('Post agregado a identidad!')
   }
 
-  res.status(200).send(identidad)
+  res.status(200).json(identidad)
 }
 
 export default handler

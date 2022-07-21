@@ -43,7 +43,7 @@ const handler = (req, res) => {
 
     return res.status(201).send('Post agregado a ilustraciones!')
   }
-  res.status(200).send(ilustraciones)
+  res.status(200).json(ilustraciones)
 }
 
 export default handler

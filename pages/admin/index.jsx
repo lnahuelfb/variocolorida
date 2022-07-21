@@ -13,16 +13,16 @@ const Admin = ({ secciones, ilustraciones, identidad, rapport }) => {
 
       <div className={styles.container}>
         {
-          secciones.map(seccion => {
+          secciones && secciones.map(seccion => {
             return (
               <div key={seccion.name}>
                 <h1>{seccion.name}</h1>
                 {
                   seccion.name === "Ilustración"
-                    ? ilustraciones.map(({ name }) => name + " ")
+                    ? ilustraciones && ilustraciones.map(({ name }) => name + " ")
                     : seccion.name === 'Identidad'
-                      ? identidad.map(({ name }) => name + " ")
-                      : rapport.map(({name}) => name + " ")
+                      ? identidad && identidad.map(({ name }) => name + " ")
+                      : rapport && rapport.map(({name}) => name + " ")
                 }
               </div>
             )
@@ -41,7 +41,7 @@ export const getStaticProps = async () => {
     const data = await fetch(`${api}${seccion}`)
     const finalData = await data.json()
 
-    return finalData
+    return JSON.parse(JSON.stringify(finalData))
   }
 
   try {
@@ -60,10 +60,10 @@ export const getStaticProps = async () => {
     }
 
   } catch (error) {
-    console.error(error.status)
+    console.error(error)
     return {
       props: {
-        error
+        error: true
       }
     }
   }
