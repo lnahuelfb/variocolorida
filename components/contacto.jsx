@@ -11,7 +11,7 @@ const Contacto = () => {
     message: ''
   })
 
-  const API = 'http//localhost:3001/email'
+  const API = 'http//localhost:3000/api/send-email'
 
   const handleChange = (e) => {
     setMessage({
@@ -20,28 +20,29 @@ const Contacto = () => {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    fetch(API, {
-      method: 'POST',
-      body: JSON.stringify(message),
-      headers: {
-        'Acept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
-        if (response.ok) {
-          return window.alert('Email enviado!')
-        } else {
-          throw new Error('Algo salió mal')
+    try {
+
+      const res = await fetch(API, {
+        method: 'POST',
+        body: JSON.stringify(message),
+        headers: {
+          'Acept': 'application/json',
+          'Content-Type': 'application/json'
         }
       })
 
-      .catch(error => {
-        console.log(error)
-      })
+      if (res.ok) {
+        return window.alert('Email enviado!')
+      } else {
+        throw new Error('Algo salió mal')
+      }
+      
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

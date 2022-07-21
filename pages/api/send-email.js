@@ -1,11 +1,14 @@
-const emails = [] 
+import nodemailer from 'nodemailer'
+require("dotenv").config();
+
+const emails = []
 
 const handler = (req, res) => {
   if (req.method === 'POST') {
     const { name, telephone, email, message } = req.body
 
     if (!name || !email || !message) {
-      return res.sendStatus(401).send('No ingresó todos los datos')
+      return res.status(401).send('No ingresó todos los datos')
     }
 
     if (!telephone) {
@@ -26,8 +29,8 @@ const handler = (req, res) => {
       message
     }
 
-    email.push(newPost)
-    
+    emails.push(newEmail)
+
     return res.status(201).send('Email envíado!')
   }
 

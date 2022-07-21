@@ -36,7 +36,7 @@
 }
 
 .pie p {
-  font-size: .8rem;
+  font-size: 1.4rem;
   color: bisque;
   margin: 0;
 }
@@ -50,5 +50,11 @@
   .container {
     width: var(--responsive-width);
     padding: var(--responsive-padding);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pie p {
+    font-size: .8rem;
   }
 }
