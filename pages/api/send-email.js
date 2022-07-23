@@ -8,6 +8,7 @@ const allowOrigins = ['https://variocolorida.vercel.app']
 
 const cors = Cors({
   methods: ['POST', 'GET', 'HEAD'],
+  origin: '*',
   allowOrigins: allowOrigins,
   AccessControlAllowOrigin: '*'
 })
