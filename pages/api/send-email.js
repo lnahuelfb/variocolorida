@@ -3,10 +3,11 @@ import Cors from 'cors'
 require("dotenv").config();
 
 const emails = []
-// const allowOrigins = ['http://localhost:3000', 'https://variocolorida.vercel.app', 'http://192.168.1.33:3000']
+const allowOrigins = ['http://localhost:3000', 'https://variocolorida.vercel.app', 'http://192.168.1.33:3000']
 
 const cors = Cors({
   methods: ['POST', 'GET', 'HEAD'],
+  origin: allowOrigins
 })
 
 function runMiddleware(req, res, fn) {
