@@ -1,16 +1,26 @@
 import nodemailer from 'nodemailer'
+import Cors from 'cors'
+import initMiddleware from '/middleware'
 require("dotenv").config();
 
 const emails = []
 
 const allowOrigins = ['https://variocolorida.vercel.app']
 
-export default async function handler(req, res) {
 
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-	res.setHeader("Access-Control-Allow-Origin", "*");
-	res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.setHeader("Access-Control-Allow-Methods", "POST", 'GET');
+const cors = initMiddleware(
+  Cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'OPTIONS'],
+  })
+)
+
+export default async function handler(req, res) {
+  await cors(req, res)
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+  }
 
   if (req.method === 'POST') {
     const { name, email, message } = req.body
@@ -36,6 +46,7 @@ export default async function handler(req, res) {
       }
 
       emails.push(newEmail)
+
       return res.status(201).send('Email envíado!')
     }
 
@@ -58,5 +69,9 @@ export default async function handler(req, res) {
     return res.status(201).send('Email envíado!')
   }
 
-  res.send(emails)
+  // export default async function handler(req, res) {
+
+  //   }
+
+  return res.send(emails)
 }
