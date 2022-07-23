@@ -1,9 +1,30 @@
 import nodemailer from 'nodemailer'
+import Cors from 'cors'
 require("dotenv").config();
 
 const emails = []
 
-async function handler(req, res) {
+const allowOrigins = ['https://variocolorida.vercel.app']
+
+const cors = Cors({
+  methods: ['POST', 'GET', 'HEAD'],
+  allowOrigins: allowOrigins,
+  AccessControlAllowOrigin: '*'
+})
+
+function runMiddleware(req, res, fn) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result) => {
+      if (result instanceof Error) {
+        return reject(result)
+      }
+      return resolve(result)
+    })
+  })
+}
+
+export default async function handler(req, res) {
+  await runMiddleware(req, res, cors)
 
   if (req.method === 'POST') {
     const { name, email, message } = req.body
@@ -54,4 +75,9 @@ async function handler(req, res) {
   res.send(emails)
 }
 
-export default handler
+
+// async function handler(req, res) {
+
+// }
+
+// export default handler

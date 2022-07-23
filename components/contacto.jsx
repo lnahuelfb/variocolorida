@@ -11,8 +11,8 @@ const Contacto = () => {
     message: ''
   })
 
-  // const API = 'http://localhost:3000/api/send-email'
-  const API = 'https://variocolorida-next-3u2hy7lsj-lnahuelfb.vercel.app/api/send-email'
+  const API = 'http://localhost:3000/api/send-email'
+  // const API = 'https://variocolorida-next-3u2hy7lsj-lnahuelfb.vercel.app/api/send-email'
 
   const handleChange = (e) => {
     setMessage({
@@ -68,7 +68,7 @@ const Contacto = () => {
           name='telephone'
           value={message.telephone}
           type="tel"
-          pattern="[+]{0,1,2}[0-9]{8,11,14}"
+          pattern="[+]{1}[0-9]{8,11,14}"
           placeholder='Telefono'
           className={styles.input}
           onChange={handleChange}
