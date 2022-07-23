@@ -1,28 +1,9 @@
 import nodemailer from 'nodemailer'
 require("dotenv").config();
-// import Cors from 'cors'
-
-// const cors = Cors({
-//   methods: ['GET', 'POST', 'HEAD'],
-//   origin: '*'
-// })
-
-// function runMiddleware(req, res, fn) {
-//   return new Promise((resolve, reject) => {
-//     fn(req, res, (result) => {
-//       if (result instanceof Error) {
-//         return reject(result)
-//       }
-//       return resolve(result)
-//     })
-//   })
-// }
 
 const emails = []
 
 async function handler(req, res) {
-
-  // await runMiddleware(req, res, cors)
 
   if (req.method === 'POST') {
     const { name, email, message } = req.body
@@ -72,18 +53,5 @@ async function handler(req, res) {
 
   res.send(emails)
 }
-
-// const handler = async (req, res) => {
-
-//   await nextCors(req, res, {
-//     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-//     origin: '*',
-//     optionsSuccessStatus: 200,
-//   });
-
-// if (req.method === 'POST') {
-
-
-// }
 
 export default handler
