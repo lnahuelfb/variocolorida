@@ -5,8 +5,6 @@ import Imagenes from './trabajos-imagenes'
 
 const Trabajos = ({ secciones, ilustraciones, identidad, rapport }) => {
 
-  // const { secciones, ilustraciones, identidad, rapport } = props
-
   return (
     <div className={styles.container}>
       <h1 id='trabajos' className={styles.title}>
