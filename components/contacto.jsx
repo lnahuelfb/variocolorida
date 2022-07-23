@@ -11,7 +11,7 @@ const Contacto = () => {
     message: ''
   })
 
-  const API = 'http//localhost:3000/api/send-email'
+  const API = 'http://localhost:3000/api/send-email'
 
   const handleChange = (e) => {
     setMessage({
@@ -24,7 +24,6 @@ const Contacto = () => {
     e.preventDefault()
 
     try {
-
       const res = await fetch(API, {
         method: 'POST',
         body: JSON.stringify(message),
@@ -34,14 +33,14 @@ const Contacto = () => {
         }
       })
 
-      if (res.ok) {
-        return window.alert('Email enviado!')
-      } else {
-        throw new Error('Algo salió mal')
-      }
-      
+      if (res.ok) return window.alert('Email enviado!')
+
+      throw new Error('Algo salió mal')
+
     } catch (error) {
-      console.log(error)
+      console.log(error.message)
+
+      window.alert(error.message)
     }
   }
 
@@ -68,6 +67,7 @@ const Contacto = () => {
           name='telephone'
           value={message.telephone}
           type="tel"
+          pattern="[+]{0,1,2}[0-9]{8,11,14}"
           placeholder='Telefono'
           className={styles.input}
           onChange={handleChange}
