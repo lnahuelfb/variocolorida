@@ -68,7 +68,7 @@ const Contacto = () => {
           name='telephone'
           value={message.telephone}
           type="tel"
-          pattern="[+]{1}[0-9]{8,11,14}"
+          pattern="^[0-9]+"
           placeholder='Telefono'
           className={styles.input}
           onChange={handleChange}
