@@ -27,7 +27,6 @@ const Contacto = () => {
     try {
       const res = await fetch(API, {
         method: 'POST',
-        // mode: 'cors',
         body: JSON.stringify(message),
         headers: {
           'Acept': 'application/json',
