@@ -15,6 +15,7 @@ const mail = (name, email, message, telephone) => {
   const mailOptions = {
     from: name,
     to: 'variocolorida@gmail.com',
+    // to: 'lnahuelfernandezb@gmail.com',
     subject: 'Consulta',
     html: `
       <h1>Datos: </h1>
@@ -41,9 +42,7 @@ const mail = (name, email, message, telephone) => {
         .send(error.message)
     }
     console.log('Email enviado!')
-    res
-      .status(200)
-      .json(req.body)
+    res.status(200).json(req.body)
   })
 }
 
