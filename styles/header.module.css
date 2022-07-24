@@ -6,7 +6,7 @@
   height: 10.4rem;
   width: var(--width);
   padding: var(--padding);
-  position: sticky;
+  position: fixed;
   top: 0;
   background-color: var(--blanchedalmond);
 }
