@@ -1,8 +1,6 @@
-import nodemailer from 'nodemailer'
 import Cors from 'cors'
-require("dotenv").config();
+import mail from './_utils'
 
-const emails = []
 const allowOrigins = ['http://localhost:3000', 'https://variocolorida.vercel.app', 'variocolorida-g6fqlm56e-lnahuelfb.vercel.app', 'http://192.168.1.33:3000']
 
 const cors = Cors({
@@ -42,45 +40,15 @@ export default async function handler(req, res) {
 
     if (!telephone || typeof telephone === NaN) {
 
-      console.log(`
-        Nombre: ${name}
-        Email: ${email}
-        Mensaje: ${message}
-        `)
-
-      const newEmail = {
-        name,
-        email,
-        message
-      }
-
-      emails.push(newEmail)
+      mail(name, email, message)
 
       return res.status(201).send('Email envíado!')
     }
 
-    console.log(`
-      Nombre: ${name}
-      Email: ${email}
-      Telefono: ${parseInt(telephone)}
-      Mensaje: ${message}
-      `)
-
-    const newEmail = {
-      name,
-      email,
-      telephone,
-      message
-    }
-
-    emails.push(newEmail)
+    mail(name, email, message, telephone)
 
     return res.status(201).send('Email envíado!')
   }
 
-  // export default async function handler(req, res) {
-
-  //   }
-
-  return res.send(emails)
+  return res.send()
 }
