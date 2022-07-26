@@ -14,7 +14,7 @@ const mail = (name, email, message, telephone) => {
 
   const mailOptions = {
     from: name,
-    to: process.env.TO,
+    to: 'lnahuelfernandezb@gmail.com',
     subject: 'Consulta',
     html: `
       <h1>Datos: </h1>

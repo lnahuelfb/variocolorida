@@ -1,34 +1,11 @@
 import Cors from 'cors'
+
 import mail from './_utils'
-
-const allowOrigins = [
-  'http://localhost:3000',
-  'https://variocolorida.vercel.app',
-  'variocolorida-g6fqlm56e-lnahuelfb.vercel.app',
-  'http://192.168.1.33:3000'
-]
-
-const cors = Cors({
-  methods: ['POST', 'GET', 'HEAD'],
-  origin: allowOrigins
-})
-
-function runMiddleware(req, res, fn) {
-  console.log('Entró al middleware')
-
-  return new Promise((resolve, reject) => {
-    fn(req, res, (result) => {
-      if (result instanceof Error) {
-        return reject(result)
-      }
-      return resolve(result)
-    })
-  })
-}
+import runMiddleware from '/cors'
 
 export default async function handler(req, res) {
 
-  await runMiddleware(req, res, cors)
+  await runMiddleware(req, res, Cors())
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
