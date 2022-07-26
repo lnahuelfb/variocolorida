@@ -32,5 +32,5 @@ export default async function handler(req, res) {
     return res.status(201).send('Email envíado!')
   }
 
-  return res.send()
+  return res.send('Hola mundo')
 }
