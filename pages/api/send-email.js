@@ -6,7 +6,7 @@ import runMiddleware from '/cors'
 const allowOrigins = [
   'http://localhost:3000',
   'https://variocolorida.vercel.app',
-  'https://variocolorida-g6fqlm56e-lnahuelfb.vercel.app',
+  'https://variocolorida-7i6udbt8h-lnahuelfb.vercel.app',
 ]
 
 const corsOptions = {

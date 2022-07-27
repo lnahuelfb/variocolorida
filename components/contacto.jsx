@@ -13,7 +13,7 @@ const Contacto = () => {
   })
 
   // const API = 'http://localhost:3000/api/send-email'
-  const API = 'https://variocolorida.vercel.app/api/send-email'
+  const API = 'https://variocolorida-7i6udbt8h-lnahuelfb.vercel.app/api/send-email'
 
   const handleChange = (e) => {
     setMessage({
