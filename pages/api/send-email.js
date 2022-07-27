@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 
   req.body=JSON.parse(req.body);
 
-  res.setHeader("Access-Control-Allow-Origin", allowOrigins);
+  res.setHeader("Access-Control-Allow-Origin", 'https://variocolorida.vercel.app/');
   res.setHeader('Access-Control-Allow-Methods', 'POST');
   res.setHeader(
     'Access-Control-Allow-Headers',
