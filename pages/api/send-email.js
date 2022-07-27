@@ -13,9 +13,11 @@ const corsOptions = {
   origin: allowOrigins
 }
 
+const cors = Cors(corsOptions)
+
 export default async function handler(req, res) {
 
-  await runMiddleware(req, res, Cors(corsOptions))
+  await runMiddleware(req, res, cors)
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
