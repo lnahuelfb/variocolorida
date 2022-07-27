@@ -17,7 +17,7 @@ import runMiddleware from '/cors'
 
 export default async function handler(req, res) {
 
-  await runMiddleware(req, res, Cors())
+  // await runMiddleware(req, res, Cors())
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
