@@ -18,7 +18,6 @@ const cors = Cors(corsOptions)
 export default async function handler(req, res) {
 
   req.body=JSON.parse(req.body);
-
   res.setHeader("Access-Control-Allow-Origin", 'https://variocolorida.vercel.app/');
   res.setHeader('Access-Control-Allow-Methods', 'POST');
   res.setHeader(
@@ -26,7 +25,7 @@ export default async function handler(req, res) {
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   )
 
-  await runMiddleware(req, res, cors)
+  // await runMiddleware(req, res, cors)
 
   if (req.method === 'OPTIONS') { return res.status(200).json((headers, { body: "OK" })) }
 
