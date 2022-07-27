@@ -19,9 +19,7 @@ export default async function handler(req, res) {
 
   await runMiddleware(req, res, cors)
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  if (req.method === 'OPTIONS') { return res.status(200).json(({ body: "OK" })) }
 
   if (req.method === 'POST') {
     const { name, email, message } = req.body
