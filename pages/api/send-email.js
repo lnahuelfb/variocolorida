@@ -17,9 +17,16 @@ const cors = Cors(corsOptions)
 
 export default async function handler(req, res) {
 
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
+  };
+
+
   await runMiddleware(req, res, cors)
 
-  if (req.method === 'OPTIONS') { return res.status(200).json(({ body: "OK" })) }
+  if (req.method === 'OPTIONS') { return res.status(200).json((headers, { body: "OK" })) }
 
   if (req.method === 'POST') {
     const { name, email, message } = req.body
