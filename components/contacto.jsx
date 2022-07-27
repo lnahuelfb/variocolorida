@@ -31,7 +31,8 @@ const Contacto = () => {
         body: JSON.stringify(message),
         headers: {
           'Acept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'mode': 'cors'
         }
       })
 

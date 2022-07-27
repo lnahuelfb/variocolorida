@@ -3,9 +3,19 @@ import Cors from 'cors'
 import mail from './_utils'
 import runMiddleware from '/cors'
 
+const allowOrigins = [
+  'http://localhost:3000',
+  'https://variocolorida.vercel.app',
+  'https://variocolorida-g6fqlm56e-lnahuelfb.vercel.app',
+]
+
+const corsOptions = {
+  origin: allowOrigins
+}
+
 export default async function handler(req, res) {
 
-  await runMiddleware(req, res, Cors('*'))
+  await runMiddleware(req, res, Cors(corsOptions))
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -32,5 +42,5 @@ export default async function handler(req, res) {
     return res.status(201).send('Email envíado!')
   }
 
-  return res.send('Hola mundo')
+  return res.send('<h1>Hola Mundo!</h1>')
 }
