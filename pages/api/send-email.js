@@ -3,21 +3,21 @@ import Cors from 'cors'
 import mail from './_utils'
 import runMiddleware from '/cors'
 
-const allowOrigins = [
-  'http://localhost:3000',
-  'https://variocolorida.vercel.app',
-  'https://variocolorida-7i6udbt8h-lnahuelfb.vercel.app',
-]
+// const allowOrigins = [
+//   'http://localhost:3000',
+//   'https://variocolorida.vercel.app',
+//   'https://variocolorida-7i6udbt8h-lnahuelfb.vercel.app',
+// ]
 
-const corsOptions = {
-  origin: allowOrigins
-}
+// const corsOptions = {
+//   origin: allowOrigins
+// }
 
-const cors = Cors(corsOptions)
+// const cors = Cors(corsOptions)
 
 export default async function handler(req, res) {
 
-  await runMiddleware(req, res, cors)
+  await runMiddleware(req, res, Cors())
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();

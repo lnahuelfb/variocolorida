@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-// require('dotenv').config()
+import { useState } from 'react'
 
 import styles from '/styles/contacto.module.css'
 
@@ -12,8 +11,8 @@ const Contacto = () => {
     message: ''
   })
 
-  // const API = 'http://localhost:3000/api/send-email'
-  const API = 'https://variocolorida-7i6udbt8h-lnahuelfb.vercel.app/api/send-email'
+  const API = 'http://localhost:3000/api/send-email'
+  // const API = 'https://variocolorida-7i6udbt8h-lnahuelfb.vercel.app/api/send-email'
 
   const handleChange = (e) => {
     setMessage({
