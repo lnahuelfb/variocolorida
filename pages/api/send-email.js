@@ -1,9 +1,14 @@
 require('dotenv').config()
 
+import NextCors from 'nextjs-cors'
 import mail from './_utils'
 
 
 export default async function handler(req, res) {
+
+  await NextCors(req, res, {
+    methods: ['POST', 'GET']
+  })
 
   switch (req.method) {
     case ('POST'):
