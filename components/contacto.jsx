@@ -11,8 +11,9 @@ const Contacto = () => {
     message: ''
   })
 
-  // const API = 'http://localhost:3000/api/send-email'
-  const API = 'https://variocolorida.vercel.app/api/send-email'
+  const API = 'http://localhost:3000/api/send-email'
+  // const API = 'http://localhost:3001/send-email'
+  // const API = 'https://variocolorida.vercel.app/api/send-email'
 
   const handleChange = (e) => {
     setMessage({
@@ -29,9 +30,7 @@ const Contacto = () => {
         method: 'POST',
         body: JSON.stringify(message),
         headers: {
-          'Acept': 'application/json',
           'Content-Type': 'application/json',
-          'mode': 'cors'
         }
       })
 

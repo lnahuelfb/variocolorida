@@ -41,7 +41,7 @@ const mail = (name, email, message, telephone) => {
         .send(error.message)
     }
     console.log('Email enviado!')
-    res.status(200).json(req.body)
+    res.status(201).json(req.body)
   })
 }
 
