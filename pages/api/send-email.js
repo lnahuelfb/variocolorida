@@ -6,9 +6,6 @@ import mail from './_utils'
 export default async function handler(req, res) {
 
   switch (req.method) {
-    case ('OPTIONS'):
-      return res.status(200).json((headers, { body: "OK" })).end()
-
     case ('POST'):
 
       const { name, email, message } = req.body
@@ -23,7 +20,7 @@ export default async function handler(req, res) {
 
         mail(name, email, message)
 
-        return res.status(201).send('Email envíado!')
+        return res.status(201).send('Email envíado!').end()
       }
 
       mail(name, email, message, telephone)
