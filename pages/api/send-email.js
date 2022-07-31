@@ -48,7 +48,7 @@ export default async function handler(req, res) {
 
         return res.status(201).send('Email envíado!')
       } catch (error) {
-        return res.status(500).json({message})
+        return res.status(500).json({message: error.message})
       }
 
     case ('GET'):
