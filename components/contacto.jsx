@@ -37,7 +37,7 @@ const Contacto = () => {
       throw new Error(res.message)
 
     } catch (error) {
-      console.log(error.message)
+      console.log(error)
 
       window.alert(error.message)
     }
