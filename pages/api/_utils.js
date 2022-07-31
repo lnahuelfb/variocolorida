@@ -36,10 +36,10 @@ const mail = (name, email, message, telephone) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      res.status(500).send({ error: error.message || 'Error en el envío'}).end()
+      return res.status(500).send({ error: 'Error en el envío' })
     }
     console.log('Email enviado!')
-    res.status(201).json(req.body)
+    return res.status(201).json(req.body)
   })
 }
 
