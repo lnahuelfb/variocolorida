@@ -1,14 +1,10 @@
 import Cors from 'cors'
+require('dotenv').config()
 
 import mail from './_utils'
 import runMiddleware from '/cors'
 
-const allowOrigins = [
-  'http://localhost:3000/',
-  'https://variocolorida.vercel.app/',
-  'https://variocolorida-7i6udbt8h-lnahuelfb.vercel.app/',
-  'http://192.168.1.33:3000/'
-]
+const allowOrigins = process.env.URL_ORIGIN
 
 const corsOptions = {
   origin: allowOrigins
