@@ -1,24 +1,25 @@
-import Cors from 'cors'
+// import Cors from 'cors'
 import NextCors from 'nextjs-cors'
 require('dotenv').config()
 
 import mail from './_utils'
-import runMiddleware from '/cors'
+// import runMiddleware from '/cors'
 
-const corsOptions = {
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+// const corsOptions = {
+//   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   // origin: '*',
   // origin: 'https://variocolorida.vercel.app/',
   // optionsSuccessStatus: 200,
-}
+// }
 
-const cors = Cors(corsOptions)
+// const cors = Cors(corsOptions)
 
 export default async function handler(req, res) {
 
   // await runMiddleware(req, res, cors)
   await NextCors(req, res, {
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    origin: '*'
   })
 
   switch (req.method) {

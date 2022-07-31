@@ -12,7 +12,6 @@ const Contacto = () => {
   })
 
   const API = '/api/send-email'
-  // const API = 'https://variocolorida.vercel.app/api/send-email'
 
   const handleChange = (e) => {
     setMessage({
