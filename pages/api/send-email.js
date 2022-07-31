@@ -4,10 +4,8 @@ require('dotenv').config()
 import mail from './_utils'
 import runMiddleware from '/cors'
 
-const allowOrigins = process.env.URL_ORIGIN
-
 const corsOptions = {
-  origin: allowOrigins
+  origin: '*'
 }
 
 const cors = Cors(corsOptions)

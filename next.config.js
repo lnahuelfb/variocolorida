@@ -1,11 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-const allowOrigins = [
-  'http://localhost:3000/',
-  'https://variocolorida.vercel.app/',
-  'https://variocolorida-7i6udbt8h-lnahuelfb.vercel.app/',
-]
-
 const nextConfig = {
   reactStrictMode: true,
   eslint: { ignoreDuringBuilds: true },
