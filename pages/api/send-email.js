@@ -4,9 +4,11 @@ require('dotenv').config()
 import mail from './_utils'
 import runMiddleware from '/cors'
 
+
 const corsOptions = {
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  origin: '*',
+  // origin: '*',
+  origin: 'https://variocolorida.vercel.app/',
   optionsSuccessStatus: 200,
 }
 
