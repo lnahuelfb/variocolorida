@@ -11,28 +11,24 @@ export default async function handler(req, res) {
 
     case ('POST'):
 
-      try {
-        const { name, email, message } = req.body
+      const { name, email, message } = req.body
 
-        const telephone = parseInt(req.body.telephone)
+      const telephone = parseInt(req.body.telephone)
 
-        if (!name || !email || !message) {
-          return res.status(403).json({ message: 'No se han ingresado todos los datos' }).end()
-        }
-
-        if (!telephone || typeof telephone === NaN) {
-
-          mail(name, email, message)
-
-          return res.status(201).send('Email envíado!')
-        }
-
-        mail(name, email, message, telephone)
-
-        return res.status(201).send('Email envíado!').end()
-      } catch (error) {
-        return res.status(500).json({ message: error }).end()
+      if (!name || !email || !message) {
+        return res.status(403).json({ message: 'No se han ingresado todos los datos' }).end()
       }
+
+      if (!telephone || typeof telephone === NaN) {
+
+        mail(name, email, message)
+
+        return res.status(201).send('Email envíado!')
+      }
+
+      mail(name, email, message, telephone)
+
+      return res.status(201).send('Email envíado!').end()
 
     case ('GET'):
       return res.send('<h1>Hola Mundo!</h1>')
