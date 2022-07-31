@@ -38,7 +38,7 @@ const mail = (name, email, message, telephone) => {
     if (error) {
       res
         .status(500)
-        .send(error.message)
+        .send(error)
     }
     console.log('Email enviado!')
     res.status(201).json(req.body)
