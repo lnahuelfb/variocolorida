@@ -34,10 +34,10 @@ const Contacto = () => {
 
       if (res.ok) return window.alert('Email enviado!')
 
-      throw new Error(res.message)
+      throw new Error('Algo salió mal')
 
     } catch (error) {
-      console.log(error)
+      console.log(error.message)
 
       window.alert(error.message)
     }
