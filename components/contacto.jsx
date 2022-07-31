@@ -11,8 +11,8 @@ const Contacto = () => {
     message: ''
   })
 
-  // const API = 'http://localhost:3000/api/send-email'
-  const API = 'https://variocolorida.vercel.app/api/send-email'
+  const API = '/api/send-email'
+  // const API = 'https://variocolorida.vercel.app/api/send-email'
 
   const handleChange = (e) => {
     setMessage({

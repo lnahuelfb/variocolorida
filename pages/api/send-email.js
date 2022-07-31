@@ -1,9 +1,9 @@
 import Cors from 'cors'
+import NextCors from 'nextjs-cors'
 require('dotenv').config()
 
 import mail from './_utils'
 import runMiddleware from '/cors'
-
 
 const corsOptions = {
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
@@ -16,7 +16,10 @@ const cors = Cors(corsOptions)
 
 export default async function handler(req, res) {
 
-  await runMiddleware(req, res, cors)
+  // await runMiddleware(req, res, cors)
+  await NextCors(req, res, {
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  })
 
   switch (req.method) {
     case ('OPTIONS'):
