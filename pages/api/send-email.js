@@ -8,8 +8,8 @@ import runMiddleware from '/cors'
 const corsOptions = {
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   // origin: '*',
-  origin: 'https://variocolorida.vercel.app/',
-  optionsSuccessStatus: 200,
+  // origin: 'https://variocolorida.vercel.app/',
+  // optionsSuccessStatus: 200,
 }
 
 const cors = Cors(corsOptions)
