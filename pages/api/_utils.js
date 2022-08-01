@@ -8,7 +8,7 @@ const sendEmail = async (name, email, message, telephone) => {
     host: process.env.HOST,
     auth: {
       user: process.env.EMAIL,
-      pass: process.env.PASSWORD
+      pass: process.env.PASSWORD,
     },
     secure: process.env.SECURE,
   })
@@ -64,7 +64,7 @@ const sendEmail = async (name, email, message, telephone) => {
     })
   })
 
-  res.status(200).json({ status: 'OK' })
+  res.status(201).json({ status: 'OK' })
 }
 
 export default sendEmail
