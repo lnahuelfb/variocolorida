@@ -46,6 +46,8 @@ const sendEmail = async (name, email, message, telephone) => {
         email: ${email}
         message: ${message}
       `)
+
+    return res.status(201).send('Email envíado!')
   })
 }
 
