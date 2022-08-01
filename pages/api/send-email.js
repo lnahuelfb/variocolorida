@@ -1,7 +1,6 @@
 require('dotenv').config()
 
-import NextCors from 'nextjs-cors'
-import mail from './_utils'
+import sendEmail from './_utils'
 
 
 export default async function handler(req, res) {
@@ -9,10 +8,6 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Content-Type', 'application/json')
   res.setHeader('Access-Control-Allow-Methods', 'POST')
-
-  await NextCors(req, res, {
-    methods: ['POST', 'GET']
-  })
 
   switch (req.method) {
     case ('POST'):
@@ -27,12 +22,12 @@ export default async function handler(req, res) {
 
       if (!telephone || typeof telephone === NaN) {
 
-        mail(res, name, email, message)
+        sendEmail(name, email, message)
 
         return res.status(201).send('Email envíado!')
       }
 
-      mail(res, name, email, message, telephone)
+      sendEmail(name, email, message, telephone)
 
       return res.status(201).send('Email envíado!')
 
