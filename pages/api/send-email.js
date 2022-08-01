@@ -21,12 +21,12 @@ export default async function handler(req, res) {
 
       if (!telephone || typeof telephone === NaN) {
 
-        await sendEmail(name, email, message)
+        sendEmail(name, email, message)
 
         return res.status(201).send('Email envíado!')
       }
 
-      await sendEmail(name, email, message, telephone)
+      sendEmail(name, email, message, telephone)
 
       return res.status(201).send('Email envíado!')
 

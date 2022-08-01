@@ -64,7 +64,7 @@ const sendEmail = async (name, email, message, telephone) => {
     })
   })
 
-  res.status(201).json({ status: 'OK' })
+  return res.status(201).json({ status: 'OK' })
 }
 
 export default sendEmail
