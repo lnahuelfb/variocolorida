@@ -20,15 +20,20 @@ export default async function handler(req, res) {
       }
 
       if (!telephone || typeof telephone === NaN) {
-
-        sendEmail(name, email, message)
-
-        return res.status(201).send('Email envíado!')
+        try {
+          sendEmail(name, email, message)
+          return res.status(201).send('Email envíado!')
+        } catch (error) {
+          console.log(error)
+        }
       }
 
-      sendEmail(name, email, message, telephone)
-
-      return res.status(201).send('Email envíado!')
+      try {
+        sendEmail(name, email, message, telephone)
+        return res.status(201).send('Email envíado!')
+      } catch (error) {
+        console.log(error)
+      }
 
     case ('GET'):
       return res.send('<h1>Hola Mundo!</h1>')
