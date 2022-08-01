@@ -36,7 +36,7 @@ const mail = async (res, name, email, message, telephone) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      return res.status(401)
+      return res.status(401).json({ error: 'Error en el envío' })
     }
     console.log('Email enviado!')
     return res.status(201).json(req.body)
