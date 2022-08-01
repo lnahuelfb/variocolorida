@@ -11,6 +11,8 @@ const Contacto = () => {
     message: ''
   })
 
+  const [loading, setLoading] = useState(false)
+
   const API = '/api/send-email'
 
   const handleChange = (e) => {
@@ -22,8 +24,10 @@ const Contacto = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
 
     try {
+
       const res = await fetch(API, {
         method: 'POST',
         headers: {
@@ -32,6 +36,8 @@ const Contacto = () => {
         },
         body: JSON.stringify(message),
       })
+
+      setLoading(false)
 
       if (res.status === 201 || res.status === 200) return window.alert('Email enviado!')
 
@@ -90,8 +96,12 @@ const Contacto = () => {
           onChange={handleChange}
           required
         />
-        <button type="submit" onSubmit={handleSubmit} className={styles.button}>
-          Enviar!
+        <button type="submit" onSubmit={handleSubmit} className={loading ? styles.buttonLoading : styles.button}>
+          {
+            loading
+              ? 'Enviando..'
+              : 'Enviar!'
+          }
         </button>
       </form>
 

@@ -20,10 +20,10 @@ export default async function handler(req, res) {
       }
 
       if (!telephone || typeof telephone === NaN) {
-        sendEmail(name, email, message)
+        await sendEmail(name, email, message)
       }
-      
-      sendEmail(name, email, message, telephone)
+
+      await sendEmail(name, email, message, telephone)
 
     case ('GET'):
       return res.send('<h1>Hola Mundo!</h1>')

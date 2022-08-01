@@ -36,8 +36,9 @@
   box-shadow: 0 0 0 0.4rem rgb(13 110 253 / 25%);
 }
 
-.button {
-  width: fit-content;
+.button,
+.buttonLoading {
+  width: 11.4rem;
   padding: .6rem 1.2rem;
   margin-top: 1rem;
   background-color: var(--morado);
@@ -49,7 +50,6 @@
   font-weight: 400;
   line-height: 1.5;
   font-size: 1.6rem;
-  cursor: pointer;
 }
 
 .button:active {
@@ -57,6 +57,14 @@
   background-color: var(--blanchedalmond);
   border-color: var(--morado);
   box-shadow: 0 0 0 0.4rem rgb(13 110 253 / 25%)
+}
+
+.button {
+  cursor: pointer;
+}
+
+.buttonLoading {
+  cursor: not-allowed;
 }
 
 @media screen and (max-width: 768px) {

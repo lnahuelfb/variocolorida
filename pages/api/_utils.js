@@ -37,17 +37,36 @@ const sendEmail = async (name, email, message, telephone) => {
         ${message}
       `
   }
-  return transporter.sendMail(mailOptions, (error, info) => {
-    if (error) return console.log(error)
 
-    console.log(`
+  await new Promise((resolve, reject) => {
+    transporter.verify(function (error, success) {
+      if (error) {
+        console.log(error);
+        reject(error);
+      } else {
+        console.log('El servidor está listo para envíar mensajes');
+        resolve(success);
+      }
+    })
+  })
+
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error(error)
+        reject(error)
+      }
+
+      console.log(`
         name: ${name}
         tel: ${telephone}
         email: ${email}
         message: ${message}
       `)
-
-    return res.status(201).send('Email envíado!')
+      resolve(info)
+      console.log('Email envíado!')
+      return res.status(201)
+    })
   })
 }
 
