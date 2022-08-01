@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer'
 require("dotenv").config();
 
-const mail = (name, email, message, telephone) => {
+const mail = (res, name, email, message, telephone) => {
   const transporter = nodemailer.createTransport({
     host: process.env.HOST,
     port: process.env.NODEMAILER_PORT,

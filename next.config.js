@@ -7,7 +7,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/api/:path*",
+        source: "/api/send-email",
         headers: [
           {
             key: "Access-Control-Allow-Credentials",
