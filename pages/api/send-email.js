@@ -2,7 +2,6 @@ require('dotenv').config()
 
 import sendEmail from './_utils'
 
-
 export default async function handler(req, res) {
 
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -22,12 +21,12 @@ export default async function handler(req, res) {
 
       if (!telephone || typeof telephone === NaN) {
 
-        sendEmail(name, email, message)
+        await sendEmail(name, email, message)
 
         return res.status(201).send('Email envíado!')
       }
 
-      sendEmail(name, email, message, telephone)
+      await sendEmail(name, email, message, telephone)
 
       return res.status(201).send('Email envíado!')
 
