@@ -26,13 +26,14 @@ const Contacto = () => {
     try {
       const res = await fetch(API, {
         method: 'POST',
-        body: JSON.stringify(message),
         headers: {
           'Content-Type': 'application/json',
-        }
+          'Accept': 'application/json, text/plain, */*',
+        },
+        body: JSON.stringify(message),
       })
 
-      if (res.ok) return window.alert('Email enviado!')
+      if (res.status === 201) return window.alert('Email enviado!')
 
       throw new Error('Algo salió mal')
 

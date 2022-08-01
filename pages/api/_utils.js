@@ -3,13 +3,13 @@ require("dotenv").config();
 
 const mail = async (res, name, email, message, telephone) => {
   const transporter = nodemailer.createTransport({
-    host: process.env.HOST,
     port: process.env.NODEMAILER_PORT,
-    secure: process.env.SECURE,
+    host: process.env.HOST,
     auth: {
       user: process.env.EMAIL,
       pass: process.env.PASSWORD
-    }
+    },
+    secure: process.env.SECURE,
   })
 
   const mailOptions = {
@@ -34,13 +34,31 @@ const mail = async (res, name, email, message, telephone) => {
       `
   }
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      return res.status(401).json({ error: 'Error en el envío' })
-    }
-    console.log('Email enviado!')
-    return res.status(201).json(req.body)
+  await new Promise((resolve, reject) => {
+    transporter.verify(function (error, success) {
+      if (error) {
+        console.log(error);
+        reject(error);
+      } else {
+        console.log("Server is ready to take our messages");
+        resolve(success);
+      }
+    });
+  });
+
+  await new Promise((res, rej) => {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error)
+      } else {
+        console.log(info)
+        console.log('Email enviado!')
+        return res.status(201).json(req.body)
+      }
+    })
   })
+
+  res.status(200).json({ status: 'OK' })
 }
 
 export default mail
