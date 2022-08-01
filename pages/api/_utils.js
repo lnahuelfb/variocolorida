@@ -38,7 +38,7 @@ const sendEmail = async (name, email, message, telephone) => {
       `
   }
   return transporter.sendMail(mailOptions, (error, info) => {
-    if (error) return new Error(error)
+    if (error) return console.log(error)
 
     console.log(`
         name: ${name}
