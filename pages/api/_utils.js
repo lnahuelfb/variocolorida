@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer'
 require("dotenv").config();
 
-const sendEmail = (name, email, message, telephone) => {
+const sendEmail = async (name, email, message, telephone) => {
 
   const transporter = nodemailer.createTransport({
     port: process.env.NODEMAILER_PORT,
@@ -11,6 +11,9 @@ const sendEmail = (name, email, message, telephone) => {
       pass: process.env.PASSWORD,
     },
     secure: process.env.SECURE,
+    tls: {
+      ciphers: 'TLS_AES_128_GCM_SHA256'
+    }
   })
 
   const mailOptions = {
@@ -34,15 +37,15 @@ const sendEmail = (name, email, message, telephone) => {
         ${message}
       `
   }
+  return transporter.sendMail(mailOptions, (error, info) => {
+    if (error) return new Error(error)
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) return console.log(error)
     console.log(`
-      name: ${name}
-      tel: ${telephone}
-      email: ${email}
-      message: ${message}
-    `)
+        name: ${name}
+        tel: ${telephone}
+        email: ${email}
+        message: ${message}
+      `)
   })
 }
 

@@ -9,6 +9,7 @@
   position: fixed;
   top: 0;
   background-color: var(--blanchedalmond);
+  z-index: 1;
 }
 
 .burgerContainer {

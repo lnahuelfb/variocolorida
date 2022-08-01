@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { useState } from 'react'
 
 import { IconContext } from 'react-icons'
@@ -18,7 +19,7 @@ const Header = () => {
       }}>
 
         <figure className={styles.imageContainer}>
-          <img src='/images/logo.png' alt="Logo de variocolorida" className={styles.logoImage} />
+          <Image src='/images/logo.png' alt="Logo de variocolorida" className={styles.logoImage} width={135} height={104} />
         </figure>
 
         <label htmlFor='menu' className={styles.burgerContainer} onClick={() => setisOpen(!isOpen)}>

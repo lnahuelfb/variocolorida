@@ -33,7 +33,7 @@ const Contacto = () => {
         body: JSON.stringify(message),
       })
 
-      if (res.status === 201) return window.alert('Email enviado!')
+      if (res.status === 201 || res.status === 200) return window.alert('Email enviado!')
 
       throw new Error('Algo salió mal')
 
