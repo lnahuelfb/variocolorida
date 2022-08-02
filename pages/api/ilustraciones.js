@@ -59,9 +59,6 @@ const handler = (req, res) => {
     default:
       return res.status(400).json({ message: 'Este metodo no está soportado' })
   }
-
-  if (req.method === 'POST') {
-  }
 }
 
 export default handler

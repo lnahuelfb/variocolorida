@@ -35,10 +35,10 @@ export const getStaticProps = async () => {
   const fetchData = async (seccion) => {
 
     const api = 'https://variocolorida.vercel.app/api/'
-    const data = await fetch(`${api}${seccion}`)
-    const finalData = await data.json()
+    const json = await fetch(`${api}${seccion}`)
+    const data = await json.json()
 
-    return JSON.parse(JSON.stringify(finalData))
+    return data
   }
 
   try {
