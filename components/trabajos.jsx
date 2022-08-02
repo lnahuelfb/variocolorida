@@ -13,8 +13,8 @@ const Trabajos = ({ secciones, ilustraciones, identidad, rapport }) => {
 
       <div className={styles.cardsContainer}>
         {
-          secciones && secciones.map(({ name, image, link, description }) => (
-            <Card name={name} image={image} link={link} description={description} key={name} />
+          secciones && secciones.map(({ name, image, link, description, id }) => (
+            <Card name={name} image={image} link={link} description={description} key={id} />
           ))
         }
       </div>
@@ -23,7 +23,7 @@ const Trabajos = ({ secciones, ilustraciones, identidad, rapport }) => {
 
       <div className={styles.trabajosContainer}>
         {
-          ilustraciones && ilustraciones.map(ilustracion => <Imagenes name={ilustracion.name} image={ilustracion.image} key={ilustracion.name} />)
+          ilustraciones && ilustraciones.map(({ name, image, id }) => <Imagenes name={name} image={image} key={id} />)
         }
       </div>
 
@@ -31,7 +31,7 @@ const Trabajos = ({ secciones, ilustraciones, identidad, rapport }) => {
 
       <div className={styles.trabajosContainer}>
         {
-          identidad && identidad.map(identidad => <Imagenes name={identidad.name} image={identidad.image} key={identidad.name} />)
+          identidad && identidad.map(({ name, image, id }) => <Imagenes name={name} image={image} key={id} />)
         }
       </div>
 
@@ -39,7 +39,7 @@ const Trabajos = ({ secciones, ilustraciones, identidad, rapport }) => {
 
       <div className={styles.trabajosContainer}>
         {
-          rapport && rapport.map(rapport => <Imagenes name={rapport.name} image={rapport.image} key={rapport.name} />)
+          rapport && rapport.map(({ name, image, id }) => <Imagenes name={name} image={image} key={id} />)
         }
       </div>
 

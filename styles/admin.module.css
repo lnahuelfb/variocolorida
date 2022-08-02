@@ -3,5 +3,11 @@
 .container {
   width: var(--width);
   padding: var(--padding);
+  height: 100vh;
+  background-color: var(--blanchedalmond);
   font-size: 2.4rem;
+}
+
+.container h1 {
+  margin: 0;
 }

@@ -1,50 +1,64 @@
+const { uuid } = require('uuidv4')
+
 const identidad = [
   {
     name: 'Uniques',
-    image: '/images/uniques.jpg'
+    image: '/images/uniques.jpg',
+    id: uuid()
   },
   {
     name: 'Omnitype',
-    image: '/images/omnitype.jpg'
+    image: '/images/omnitype.jpg',
+    id: uuid()
   },
   {
     name: 'Lost in',
-    image: '/images/lostin.jpg'
+    image: '/images/lostin.jpg',
+    id: uuid()
   },
   {
     name: "Detective's Coffee",
-    image: '/images/pikachu.jpg'
+    image: '/images/pikachu.jpg',
+    id: uuid()
   },
   {
     name: 'INADI',
-    image: '/images/inadi.jpg'
+    image: '/images/inadi.jpg',
+    id: uuid()
   },
   {
     name: 'Monograma',
-    image: '/images/monograma.jpg'
+    image: '/images/monograma.jpg',
+    id: uuid()
   }
 ]
 
 const handler = (req, res) => {
 
-  if (req.method === 'POST') {
-    const { name, image } = req.body
-    
-    if (!name || !image) {
-      return res.sendStatus(401).send('No ingresó todos los datos')
-    }
+  switch (req.method) {
+    case 'POST':
+      const { name, image } = req.body
 
-    const newPost = {
-      name,
-      image
-    }
+      if (!name || !image) {
+        return res.sendStatus(401).send('No ingresó todos los datos')
+      }
 
-    identidad.push(newPost)
-    
-    return res.status(201).send('Post agregado a identidad!')
+      const newPost = {
+        name,
+        image,
+        id: uuid()
+      }
+
+      identidad.push(newPost)
+
+      return res.status(201).send('Post agregado a identidad!')
+
+    case 'GET':
+      res.status(200).json(identidad)
+
+    default:
+      return res.status(400).json({ message: 'Este metodo no está soportado' })
   }
-
-  res.status(200).json(identidad)
 }
 
 export default handler

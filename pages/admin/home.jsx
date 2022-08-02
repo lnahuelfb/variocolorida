@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 
 import styles from '/styles/admin.module.css'
 
@@ -8,7 +9,7 @@ const Admin = ({ secciones, ilustraciones, identidad, rapport }) => {
     <>
       <Head>
         <title>Admin</title>
-        <link rel='icon' href='/logo.ico' />
+        <link rel='icon' href='/public/logo.ico' />
       </Head>
 
       <div className={styles.container}>
@@ -16,13 +17,17 @@ const Admin = ({ secciones, ilustraciones, identidad, rapport }) => {
           secciones && secciones.map(seccion => {
             return (
               <div key={seccion.name}>
-                <h1>{seccion.name}</h1>
+                <Link href={seccion.name}>
+                  <a>
+                    <h1>{seccion.name}</h1>
+                  </a>
+                </Link>
                 {
                   seccion.name === "Ilustración"
                     ? ilustraciones && ilustraciones.map(({ name }) => name + " ")
                     : seccion.name === 'Identidad'
                       ? identidad && identidad.map(({ name }) => name + " ")
-                      : rapport && rapport.map(({name}) => name + " ")
+                      : rapport && rapport.map(({ name }) => name + " ")
                 }
               </div>
             )
