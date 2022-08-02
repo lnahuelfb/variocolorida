@@ -34,7 +34,6 @@ const identidad = [
 ]
 
 const handler = (req, res) => {
-
   switch (req.method) {
     case 'POST':
       const { name, image } = req.body
@@ -54,7 +53,7 @@ const handler = (req, res) => {
       return res.status(201).send('Post agregado a identidad!')
 
     case 'GET':
-      res.status(200).json(identidad)
+      return res.status(200).json(identidad)
 
     default:
       return res.status(400).json({ message: 'Este metodo no está soportado' })

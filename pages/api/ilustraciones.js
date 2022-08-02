@@ -54,7 +54,7 @@ const handler = (req, res) => {
       return res.status(201).send('Post agregado a ilustraciones!')
 
     case 'GET':
-      res.status(200).json(ilustraciones)
+      return res.status(200).json(ilustraciones)
 
     default:
       return res.status(400).json({ message: 'Este metodo no está soportado' })

@@ -39,7 +39,7 @@ const handler = (req, res) => {
       return res.status(201).send('Post agregado a Rapport!')
 
     case 'GET':
-      res.status(200).json(rapport)
+      return res.status(200).json(rapport)
 
     default:
       return res.status(400).json({ message: 'Este metodo no está soportado' })
