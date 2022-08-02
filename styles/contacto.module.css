@@ -38,12 +38,12 @@
 
 .button,
 .buttonLoading {
-  width: 11.4rem;
+  width: 9.5rem;
   padding: .6rem 1.2rem;
   margin-top: 1rem;
   background-color: var(--morado);
   color: white;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   border: 0;
   border-radius: .5rem;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;

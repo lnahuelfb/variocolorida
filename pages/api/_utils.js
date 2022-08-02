@@ -44,7 +44,7 @@ const sendEmail = async (name, email, message, telephone) => {
         console.log(error);
         reject(error);
       } else {
-        console.log('El servidor está listo para envíar mensajes');
+        console.log('El servidor está listo para enviar mensajes');
         resolve(success);
       }
     })

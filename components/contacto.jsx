@@ -99,7 +99,7 @@ const Contacto = () => {
         <button type="submit" onSubmit={handleSubmit} className={loading ? styles.buttonLoading : styles.button}>
           {
             loading
-              ? 'Enviando..'
+              ? 'Enviando'
               : 'Enviar!'
           }
         </button>
