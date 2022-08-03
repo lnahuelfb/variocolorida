@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import React from 'react'
 
 const id = () => {
 
@@ -8,7 +7,7 @@ const id = () => {
 
   return (
     <div>
-      <h1>Hola {id}</h1>
+      <h1>Hola ID: {id}</h1>
     </div>
   )
 }

@@ -1,34 +1,43 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
+import AdminCard from 'components/adminCard'
+
 import styles from '/styles/admin.module.css'
 
-const Admin = ({ secciones, ilustraciones, identidad, rapport }) => {
+const Admin = ({ data }) => {
+
+  const user = {
+    name: 'Variocolorida'
+  }
 
   return (
     <>
       <Head>
         <title>Admin</title>
-        <link rel='icon' href='/public/logo.ico' />
+        <link rel='icon' href='/logo.ico' />
       </Head>
 
       <div className={styles.container}>
+        <h1>¡Bienvenida {user.name}!</h1>
         {
-          secciones && secciones.map(seccion => {
+          data && data.map(({ id, seccion, trabajos }) => {
             return (
-              <div key={seccion.name}>
-                <Link href={seccion.name}>
-                  <a>
-                    <h1>{seccion.name}</h1>
-                  </a>
-                </Link>
-                {
-                  seccion.name === "Ilustración"
-                    ? ilustraciones && ilustraciones.map(({ name }) => name + " ")
-                    : seccion.name === 'Identidad'
-                      ? identidad && identidad.map(({ name }) => name + " ")
-                      : rapport && rapport.map(({ name }) => name + " ")
-                }
+              <div key={id}>
+                <h2>
+                  <Link href={seccion}>
+                    <a>
+                      {seccion}
+                    </a>
+                  </Link>
+                </h2>
+                <div className={styles.cardContainer}>
+                  {
+                    trabajos && trabajos.map(({ name, image, id }) => (
+                      <AdminCard name={name} image={image} link={`${seccion}/${id}`} />
+                    ))
+                  }
+                </div>
               </div>
             )
           })
@@ -40,28 +49,22 @@ const Admin = ({ secciones, ilustraciones, identidad, rapport }) => {
 
 export const getStaticProps = async () => {
 
-  const fetchData = async (seccion) => {
+  const fetchData = async () => {
 
-    // const api = 'http://localhost:3000/api/'
-    const api = 'https://variocolorida-next-3u2hy7lsj-lnahuelfb.vercel.app/api/'
-    const data = await fetch(`${api}${seccion}`)
-    const finalData = await data.json()
+    // const API = 'http://localhost:3000/api/data'
+    const API = 'https://variocolorida.vercel.app/api/data'
+    const res = await fetch(API)
+    const data = await res.json()
 
-    return JSON.parse(JSON.stringify(finalData))
+    return data
   }
 
   try {
-    const secciones = await fetchData('secciones')
-    const ilustraciones = await fetchData('ilustraciones')
-    const identidad = await fetchData('identidad')
-    const rapport = await fetchData('rapport')
+    const data = await fetchData()
 
     return {
       props: {
-        secciones,
-        ilustraciones,
-        identidad,
-        rapport
+        data,
       }
     }
 

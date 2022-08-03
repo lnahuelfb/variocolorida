@@ -3,11 +3,25 @@
 .container {
   width: var(--width);
   padding: var(--padding);
-  height: 100vh;
+  height: 100%;
   background-color: var(--blanchedalmond);
   font-size: 2.4rem;
 }
 
 .container h1 {
   margin: 0;
+  color: var(--morado);
+}
+
+.container h2 {
+  margin: 1rem;
+}
+
+.container h2 a{
+  color: var(--violeta);
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
 }

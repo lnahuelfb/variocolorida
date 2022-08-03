@@ -1,6 +1,4 @@
-import React from 'react'
 import { useRouter } from 'next/router'
-
 
 const Seccion = () => {
 
@@ -9,7 +7,7 @@ const Seccion = () => {
 
   return (
     <div>
-      <h1>{`Hola ${seccion}`}</h1>
+      <h1>Hola Seccion: {seccion}</h1>
     </div>
   )
 }

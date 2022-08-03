@@ -3,7 +3,7 @@ import Card from './card'
 import styles from '/styles/trabajos.module.css'
 import Imagenes from './trabajos-imagenes'
 
-const Trabajos = ({ secciones, ilustraciones, identidad, rapport }) => {
+const Trabajos = ({ data }) => {
 
   return (
     <div className={styles.container}>
@@ -13,36 +13,25 @@ const Trabajos = ({ secciones, ilustraciones, identidad, rapport }) => {
 
       <div className={styles.cardsContainer}>
         {
-          secciones && secciones.map(({ name, image, link, description, id }) => (
-            <Card name={name} image={image} link={link} description={description} key={id} />
+          data && data.map(({ seccion, image, link, description, id }) => (
+            <Card name={seccion} image={image} link={`#${link}`} description={description} key={id} />
           ))
         }
       </div>
 
-      <h2 id='ilustracion' className={styles.subtitle}>Ilustración</h2>
+      {
+        data && data.map(({ seccion, trabajos, id, link }) => (
+          <div key={id}>
+            <h2 id={link} className={styles.subtitle}>{seccion}</h2>
 
-      <div className={styles.trabajosContainer}>
-        {
-          ilustraciones && ilustraciones.map(({ name, image, id }) => <Imagenes name={name} image={image} key={id} />)
-        }
-      </div>
-
-      <h2 id='identidad' className={styles.subtitle}>Identidad</h2>
-
-      <div className={styles.trabajosContainer}>
-        {
-          identidad && identidad.map(({ name, image, id }) => <Imagenes name={name} image={image} key={id} />)
-        }
-      </div>
-
-      <h2 id='rapport' className={styles.subtitle}>Rapport</h2>
-
-      <div className={styles.trabajosContainer}>
-        {
-          rapport && rapport.map(({ name, image, id }) => <Imagenes name={name} image={image} key={id} />)
-        }
-      </div>
-
+            <div className={styles.trabajosContainer}>
+              {
+                trabajos && trabajos.map(({ name, image, id }) => <Imagenes name={name} image={image} key={id} />)
+              }
+            </div>
+          </div>
+        ))
+      }
     </div>
   )
 }

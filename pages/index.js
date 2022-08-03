@@ -1,12 +1,12 @@
 import Head from 'next/head'
-import Header from '../components/header'
-import Inicio from '../components/inicio'
-import SobreMi from '../components/sobreMi'
-import Trabajos from '../components/trabajos'
-import Contacto from '../components/contacto'
-import Footer from '../components/footer'
+import Header from '/components/header'
+import Inicio from '/components/inicio'
+import SobreMi from '/components/sobreMi'
+import Trabajos from '/components/trabajos'
+import Contacto from '/components/contacto'
+import Footer from '/components/footer'
 
-export default function Home({ secciones, ilustraciones, identidad, rapport }) {
+export default function Home({ data }) {
 
   return (
     <>
@@ -22,7 +22,7 @@ export default function Home({ secciones, ilustraciones, identidad, rapport }) {
         <Header />
         <Inicio />
         <SobreMi />
-        <Trabajos secciones={secciones} ilustraciones={ilustraciones} identidad={identidad} rapport={rapport} />
+        <Trabajos data={data} />
         <Contacto />
         <Footer />
       </div>
@@ -32,27 +32,23 @@ export default function Home({ secciones, ilustraciones, identidad, rapport }) {
 
 export const getStaticProps = async () => {
 
-  const fetchData = async (seccion) => {
+  const fetchData = async () => {
 
-    const api = 'https://variocolorida.vercel.app/api/'
-    const json = await fetch(`${api}${seccion}`)
-    const data = await json.json()
+    const API = 'https://variocolorida.vercel.app/api/data'
+    // const API = 'http://localhost:3000/api/data'
+
+    const res = await fetch(API)
+    const data = await res.json()
 
     return data
   }
 
   try {
-    const secciones = await fetchData('secciones')
-    const ilustraciones = await fetchData('ilustraciones')
-    const identidad = await fetchData('identidad')
-    const rapport = await fetchData('rapport')
+    const data = await fetchData()
 
     return {
       props: {
-        secciones,
-        ilustraciones,
-        identidad,
-        rapport
+        data
       }
     }
 

@@ -1,9 +1,9 @@
-import Image from 'next/image'
 import { useState } from 'react'
 
 import { IconContext } from 'react-icons'
 import { FaBars } from 'react-icons/fa'
 
+import Image from 'next/image'
 import styles from '/styles/header.module.css'
 
 const Header = () => {
