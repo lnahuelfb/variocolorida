@@ -32,19 +32,12 @@ export default function Home({ data }) {
 
 export const getStaticProps = async () => {
 
-  const fetchData = async () => {
-
-    const API = 'https://variocolorida.vercel.app/api/data'
-    // const API = 'http://localhost:3000/api/data'
-
-    const res = await fetch(API)
-    const data = await res.json()
-
-    return data
-  }
+  const API = 'https://variocolorida.vercel.app/api/data'
+  // const API = 'http://localhost:3000/api/data'
 
   try {
-    const data = await fetchData()
+    const res = await fetch(API)
+    const data = await res.json()
 
     return {
       props: {
