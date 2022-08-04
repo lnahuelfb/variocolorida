@@ -8,7 +8,8 @@ import styles from '/styles/admin.module.css'
 const Admin = ({ data }) => {
 
   const user = {
-    name: 'Variocolorida'
+    name: 'Variocolorida',
+    isConected: true
   }
 
   return (
@@ -34,7 +35,7 @@ const Admin = ({ data }) => {
                 <div className={styles.cardContainer}>
                   {
                     trabajos && trabajos.map(({ name, image, id }) => (
-                      <AdminCard name={name} image={image} link={`${seccion}/${id}`} />
+                      <AdminCard name={name} image={image} link={`${seccion}/${id}`} key={id} />
                     ))
                   }
                 </div>
@@ -49,8 +50,8 @@ const Admin = ({ data }) => {
 
 export const getStaticProps = async () => {
 
-  // const API = 'http://localhost:3000/api/data'
-  const API = 'https://variocolorida.vercel.app/api/data'
+  const API = 'http://localhost:3000/api/data'
+  // const API = 'https://variocolorida.vercel.app/api/data'
 
   try {
     const res = await fetch(API)

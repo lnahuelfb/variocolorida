@@ -1,7 +1,7 @@
 const { uuid } = require('uuidv4')
 
 export const secciones = [{
-  seccion: 'Ilustración',
+  seccion: 'Ilustracion',
   image: '/images/ilustracion.jpeg',
   link: 'ilustracion',
   description: 'Diseño e ilustración de personajes, escenografías, paisajes, bocetos solos o combinados con texto.',

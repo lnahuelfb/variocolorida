@@ -9,7 +9,7 @@ const Card = ({ name, image, link }) => {
       </figure>
 
       <h2 className={styles.title}>
-        <a href={link} className={styles.link}>{name}</a>
+        <a href={link} className={styles.link}>{name === 'Ilustracion' ? 'Ilustración' : name}</a>
       </h2>
 
     </div>

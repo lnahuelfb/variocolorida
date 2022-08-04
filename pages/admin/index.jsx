@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import Router from 'next/router'
 import Link from 'next/link'
 
 import styles from '/styles/login.module.css'
@@ -20,6 +21,16 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
   }
+
+  const user = {
+    name: 'Variocolorida',
+    isConected: true
+  }
+
+  useEffect(() => {
+    if (user.isConected) Router.push('admin/home')
+  }, [user.isConected])
+
 
   return (
     <form className={styles.container} onSubmit={handleSubmit}>

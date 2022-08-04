@@ -18,7 +18,7 @@ const rapport = [
   }
 ]
 
-const handler = (req, res) => {
+export default function handler(req, res) {
 
   switch (req.method) {
     case 'POST':
@@ -43,8 +43,5 @@ const handler = (req, res) => {
 
     default:
       return res.status(400).json({ message: 'Este metodo no está soportado' })
-
   }
 }
-
-export default handler
