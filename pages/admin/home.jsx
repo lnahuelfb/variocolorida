@@ -26,7 +26,7 @@ const Admin = ({ data }) => {
             return (
               <div key={id}>
                 <h2>
-                  <Link href={seccion}>
+                  <Link href={seccion.toLowerCase()}>
                     <a>
                       {seccion}
                     </a>
@@ -35,7 +35,7 @@ const Admin = ({ data }) => {
                 <div className={styles.cardContainer}>
                   {
                     trabajos && trabajos.map(({ name, image, id }) => (
-                      <AdminCard name={name} image={image} link={`${seccion}/${id}`} key={id} />
+                      <AdminCard name={name} image={image} link={`${seccion.toLowerCase()}/${id}`} key={id} />
                     ))
                   }
                 </div>

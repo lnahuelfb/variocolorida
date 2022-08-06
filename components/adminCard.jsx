@@ -6,7 +6,7 @@ const AdminCard = ({ name, image, link }) => {
   return (
     <div className={styles.container}>
       <figure className={styles.imageContainer}>
-        <Image src={image} alt={name} className={styles.image} width={225} height={200} />
+        <Image src={image} alt={name} width={225} height={200} objectFit='scale-down' />
       </figure>
 
       <Link href={link} >

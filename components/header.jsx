@@ -19,7 +19,7 @@ const Header = () => {
       }}>
 
         <figure className={styles.imageContainer}>
-          <Image src='/images/logo.png' alt="Logo de variocolorida" className={styles.logoImage} width={135} height={104} />
+          <Image src='/images/logo.png' alt="Logo de variocolorida" objectFit='scale-down' width={135} height={104} />
         </figure>
 
         <label htmlFor='menu' className={styles.burgerContainer} onClick={() => setisOpen(!isOpen)}>

@@ -12,7 +12,7 @@ const Inicio = () => {
       </div>
 
       <figure className={styles.imageContainer}>
-        <Image src='/images/yo.jpg' alt="Agustina Pedemonte" className={styles.image} width={516} height={516} />
+        <Image src='/images/yo.jpg' alt="Agustina Pedemonte" objectFit='scale-down' width={516} height={516} />
       </figure>
 
     </section>
