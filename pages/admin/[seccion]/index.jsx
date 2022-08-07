@@ -25,8 +25,8 @@ const Seccion = ({ data }) => {
 
 export async function getStaticProps({ params }) {
 
-  // const API = 'http://localhost:3000/api/'
-  const API = 'https://variocolorida.vercel.app/api/'
+  const API = 'http://localhost:3000/api/'
+  // const API = 'https://variocolorida.vercel.app/api/'
 
   try {
     const res = await fetch(`${API}${params.seccion}`)

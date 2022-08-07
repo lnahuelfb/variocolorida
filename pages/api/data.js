@@ -102,26 +102,28 @@ export const secciones = [{
 
 export default function handler(req, res) {
   switch (req.method) {
-    // case 'POST':
-    //   const { name, image, description } = req.body
-
-    //   if (!name || !image || !description) {
-    //     return res.sendStatus(401).send('No ingresó todos los datos')
-    //   }
-
-    //   const newSection = {
-    //     name,
-    //     image,
-    //     description,
-    //     id: uuid()
-    //   }
-
-    //   secciones.push(newSection)
-
-    //   return res.status(201).send('Post agregado a Rapport!')
     case 'GET':
       return res.status(200).json(secciones)
 
+    case 'POST':
+      const { name, image, description } = req.body
+
+      if (!name || !image || !description) {
+        return res.status(401).json({ message: 'No ingresó todos los datos' })
+      }
+
+      const newSection = {
+        seccion: name,
+        image: `images/${name}`,
+        description,
+        link: name,
+        trabajos: [],
+        id: uuid()
+      }
+
+      secciones.push(newSection)
+
+      return res.status(201).json({ message: `Seccion: ${newSection.seccion} agregada con exito!` })
     default:
       return res.status(400).json({ message: 'Este metodo no está soportado' })
   }

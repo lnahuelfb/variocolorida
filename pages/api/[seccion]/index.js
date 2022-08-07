@@ -9,8 +9,8 @@ export default function handler(req, res) {
       switch (req.method) {
         case 'GET':
           return res.json(sec)
-        case 'POST':
-          return res.json({ message: 'Trabajo agregado exitosamente!' })
+        case 'PATCH':
+          return res.json({ message: `${seccion} actualizado correctamente` })
         default:
           return res.status(400).json({ message: 'Este metodo no está soportado' })
       }

@@ -57,12 +57,6 @@ const sendEmail = async (name, email, message, telephone) => {
         reject(error)
       }
 
-      console.log(`
-        name: ${name}
-        tel: ${telephone}
-        email: ${email}
-        message: ${message}
-      `)
       resolve(info)
       console.log('Email envíado!')
       return res.status(201)
