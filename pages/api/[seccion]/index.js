@@ -8,9 +8,9 @@ export default function handler(req, res) {
     if (sec.seccion.toLowerCase() === seccion.toLowerCase()) {
       switch (req.method) {
         case 'GET':
-          return res.json(sec)
+          return res.status(200).json(sec)
         case 'PATCH':
-          return res.json({ message: `${seccion} actualizado correctamente` })
+          return res.status(200).json({ message: `${seccion} actualizado correctamente` })
         default:
           return res.status(400).json({ message: 'Este metodo no está soportado' })
       }
