@@ -1,6 +1,6 @@
 const { uuid } = require('uuidv4')
 
-export const secciones = [{
+export const data = [{
   seccion: 'Ilustracion',
   image: '/images/ilustracion.jpeg',
   link: 'ilustracion',
@@ -103,7 +103,7 @@ export const secciones = [{
 export default function handler(req, res) {
   switch (req.method) {
     case 'GET':
-      return res.status(200).json(secciones)
+      return res.status(200).json(data)
 
     case 'POST':
       const { name, image, description } = req.body
@@ -121,7 +121,7 @@ export default function handler(req, res) {
         id: uuid()
       }
 
-      secciones.push(newSection)
+      data.push(newSection)
 
       return res.status(201).json({ message: `Seccion: ${newSection.seccion} agregada con exito!` })
     default:
