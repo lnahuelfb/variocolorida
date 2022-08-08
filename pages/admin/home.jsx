@@ -49,12 +49,12 @@ const Admin = ({ data }) => {
 }
 
 export const getStaticProps = async () => {
+  require('dotenv').config()
 
-  // const API = 'http://localhost:3000/api/data'
-  const API = 'https://variocolorida.vercel.app/api/data'
+  const API = process.env.API || 'http://localhost:3000/api/'
 
   try {
-    const res = await fetch(API)
+    const res = await fetch(`${API}data`)
     const data = await res.json()
 
     return {
