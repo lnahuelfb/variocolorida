@@ -5,6 +5,11 @@ import AdminCard from 'components/adminCard'
 import styles from 'styles/secciones.module.css'
 
 // const Seccion = ({ data }) => {
+const Seccion = () => {
+  return (
+    <h1>Hola mundo!</h1>
+  )
+}
 
 //   const router = useRouter()
 //   const { seccion } = router.query
@@ -64,4 +69,4 @@ import styles from 'styles/secciones.module.css'
 
 // }
 
-// export default Seccion
+export default Seccion
