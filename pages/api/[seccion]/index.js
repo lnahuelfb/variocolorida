@@ -5,7 +5,7 @@ export default function handler(req, res) {
   const { seccion } = req.query
 
   secciones.map((sec) => {
-    if (sec.seccion.toLocaleLowerCase() === seccion.toLowerCase()) {
+    if (sec.seccion.toLowerCase() === seccion.toLowerCase()) {
       switch (req.method) {
         case 'GET':
           return res.json(sec)

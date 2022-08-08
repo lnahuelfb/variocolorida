@@ -6,7 +6,7 @@ export default function handler(req, res) {
 
   if (req.method === 'GET') {
     secciones.map((sec) => {
-      if (sec.seccion.toLocaleLowerCase() === seccion.toLowerCase()) {
+      if (sec.seccion.toLowerCase() === seccion.toLowerCase()) {
         sec.trabajos.map(t => {
           if (t.name.toLowerCase() === trabajo.toLowerCase()) {
             return res.status(200).send(t)
@@ -31,7 +31,7 @@ export default function handler(req, res) {
     }
 
     secciones.map((sec) => {
-      if (sec.seccion.toLocaleLowerCase() === seccion.toLowerCase()) {
+      if (sec.seccion.toLowerCase() === seccion.toLowerCase()) {
         sec.trabajos.push(newPost)
         return res.status(201).send('Nuevo post creado!')
       }
@@ -44,7 +44,7 @@ export default function handler(req, res) {
     if (!name && !image) return res.status(403).json({ message: 'No se han ingresado todos los datos' })
 
     secciones.map((sec) => {
-      if (sec.seccion.toLocaleLowerCase() === seccion.toLowerCase()) {
+      if (sec.seccion.toLowerCase() === seccion.toLowerCase()) {
         sec.trabajos.map(trabajo => {
 
           if (trabajo.id === id) {
