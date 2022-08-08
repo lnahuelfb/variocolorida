@@ -22,11 +22,11 @@ const Admin = ({ data }) => {
       <div className={styles.container}>
         <h1>¡Bienvenida {user.name}!</h1>
         {
-          data && data.map(({ id, seccion, trabajos }) => {
+          data && data.map(({ id, link, seccion, trabajos }) => {
             return (
               <div key={id}>
                 <h2>
-                  <Link href={seccion.toLowerCase()}>
+                  <Link href={link.toLowerCase()}>
                     <a>
                       {seccion}
                     </a>
