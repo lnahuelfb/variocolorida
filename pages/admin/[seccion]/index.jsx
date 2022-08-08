@@ -29,7 +29,7 @@ export async function getStaticProps({ params }) {
   const API = 'https://variocolorida.vercel.app/api/'
 
   try {
-    const res = await fetch(`${API}${params.seccion}`)
+    const res = await fetch(`${API}${params.link}`)
     const data = await res.json()
 
     return {
