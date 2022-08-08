@@ -64,4 +64,4 @@ import styles from 'styles/secciones.module.css'
 
 // }
 
-export default Seccion
+// export default Seccion
