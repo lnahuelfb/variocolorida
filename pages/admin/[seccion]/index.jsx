@@ -51,8 +51,8 @@ export async function getStaticPaths() {
     const res = await fetch(API)
     const data = await res.json()
 
-    const paths = data.map(({ seccion }) => ({
-      params: { seccion: seccion.toLowerCase() }
+    const paths = data.map(({ link }) => ({
+      params: { link: link.toLowerCase() }
     }))
 
     return {
