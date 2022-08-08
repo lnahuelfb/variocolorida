@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 
+
 import AdminCard from 'components/adminCard'
 
 import styles from 'styles/secciones.module.css'
@@ -26,9 +27,11 @@ const Seccion = ({ data }) => {
 }
 
 export async function getStaticProps({ params }) {
+  require('dotenv').config()
 
-  const API = 'http://localhost:3000/api/'
+  // const API = 'http://localhost:3000/api/'
   // const API = 'https://variocolorida.vercel.app/api/'
+  const API = process.env.API || 'http://localhost:3000/api/'
 
   try {
     const res = await fetch(`${API}${params.seccion}`)
@@ -45,12 +48,14 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
+  require('dotenv').config()
 
-  const API = 'http://localhost:3000/api/data'
-  // const API = 'https://variocolorida.vercel.app/api/data'
+  // const API = 'http://localhost:3000/api/data'
+  // const API = 'https://variocolorida.vercel.app/api/'
+  const API = process.env.API || 'http://localhost:3000/api/'
 
   try {
-    const res = await fetch(API)
+    const res = await fetch(`${API}data`)
     const data = await res.json()
 
     const paths = data.map(({ link }) => ({ params: { seccion: link } }))
