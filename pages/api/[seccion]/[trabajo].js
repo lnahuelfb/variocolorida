@@ -51,11 +51,9 @@ export default function handler(req, res) {
             name
               ? trabajo.name = name
               : null
-
             image
               ? trabajo.image = image
               : null
-
             return res.status(200).json({ message: 'Trabajo actualizado correctamente!' })
           }
         })
