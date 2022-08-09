@@ -6,7 +6,7 @@ import { FaBars } from 'react-icons/fa'
 import Image from 'next/image'
 import styles from '/styles/header.module.css'
 
-const Header = () => {
+const Header = ({ data }) => {
 
   const [isOpen, setisOpen] = useState(false)
 
@@ -45,15 +45,13 @@ const Header = () => {
             </a>
 
             <ul className={styles.menuTrabajos}>
-              <li>
-                <a href="#ilustracion" className={styles.links} onClick={() => setisOpen(!isOpen)}>Ilustracion</a>
-              </li>
-              <li>
-                <a href="#identidad" className={styles.links} onClick={() => setisOpen(!isOpen)}>Identidad</a>
-              </li>
-              <li>
-                <a href="#rapport" className={styles.links} onClick={() => setisOpen(!isOpen)}>Rapport</a>
-              </li>
+              {
+                data && data.map(({ seccion, link }) => (
+                  <li>
+                    <a href={`#${link.toLowerCase()}`} className={styles.links} onClick={() => setisOpen(!isOpen)}>{seccion === 'Ilustracion' ? "Ilustración" : seccion}</a>
+                  </li>
+                ))
+              }
             </ul>
           </li>
 

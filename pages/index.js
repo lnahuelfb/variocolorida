@@ -19,7 +19,7 @@ export default function Home({ data }) {
       </Head>
 
       <div id='inicio'>
-        <Header />
+        <Header data={data} />
         <Inicio />
         <SobreMi />
         <Trabajos data={data} />
@@ -38,8 +38,6 @@ export const getStaticProps = async () => {
   try {
     const res = await fetch(`${API}data`)
     const data = await res.json()
-
-    console.log(data)
 
     return {
       props: {

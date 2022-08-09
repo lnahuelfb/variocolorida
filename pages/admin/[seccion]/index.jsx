@@ -61,7 +61,6 @@ export async function getStaticPaths() {
     console.log(error)
     return { paths: [], fallback: false }
   }
-
 }
 
 export default Seccion
