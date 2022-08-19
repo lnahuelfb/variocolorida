@@ -35,7 +35,7 @@ const Admin = ({ data }) => {
                 <div className={styles.cardContainer}>
                   {
                     trabajos && trabajos.map(({ name, image, id }) => (
-                      <AdminCard name={name} image={image} link={`${seccion.toLowerCase()}/${id}`} key={id} />
+                      <AdminCard name={name} image={image} link={`${seccion.toLowerCase()}/${name.toLowerCase()}`} key={id} />
                     ))
                   }
                 </div>

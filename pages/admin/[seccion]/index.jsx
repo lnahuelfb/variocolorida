@@ -9,13 +9,15 @@ const Seccion = ({ data }) => {
   const router = useRouter()
   const { seccion } = router.query
 
+  console.table(data.trabajos)
+
   return (
     <div className={styles.container}>
       <h1>{data.seccion}</h1>
       <div className={styles.cardContainer}>
         {
           data.trabajos && data.trabajos.map(({ name, image, id }) => (
-            <AdminCard name={name} image={image} link={`${seccion}/${id}`} key={id} />
+            <AdminCard name={name} image={image} link={`${seccion}/${name.toLowerCase()}`} key={id} />
           ))
         }
       </div>
