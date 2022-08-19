@@ -1,22 +1,14 @@
 import { data } from "../data"
 import { uuid } from "uuidv4"
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const { seccion, trabajo } = req.query
 
   if (req.method === 'GET') {
-    data.map((sec) => {
+    const sec = data.filter(data => data.seccion.toLowerCase() === seccion.toLowerCase())
+    const response = sec[0].trabajos.filter(t => t.name.toLowerCase() === trabajo.toLowerCase())
 
-      if (sec.seccion.toLowerCase() === seccion.toLowerCase()) {
-        sec.trabajos.map(t => {
-
-          if (t.name.toLowerCase() === trabajo.toLowerCase()) {
-
-            return res.status(200).send(t)
-          }
-        })
-      }
-    })
+    return res.status(200).json(response[0])
   }
 
   if (req.method === 'POST') {

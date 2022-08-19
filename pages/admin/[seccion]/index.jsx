@@ -9,8 +9,6 @@ const Seccion = ({ data }) => {
   const router = useRouter()
   const { seccion } = router.query
 
-  console.table(data.trabajos)
-
   return (
     <div className={styles.container}>
       <h1>{data.seccion}</h1>
