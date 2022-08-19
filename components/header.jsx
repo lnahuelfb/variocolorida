@@ -6,7 +6,7 @@ import { FaBars } from 'react-icons/fa'
 import Image from 'next/image'
 import styles from '/styles/header.module.css'
 
-const Header = ({ data }) => {
+function Header ({ data }) {
 
   const [isOpen, setisOpen] = useState(false)
 

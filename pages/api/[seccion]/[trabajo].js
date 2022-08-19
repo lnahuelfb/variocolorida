@@ -6,9 +6,12 @@ export default function handler(req, res) {
 
   if (req.method === 'GET') {
     data.map((sec) => {
+
       if (sec.seccion.toLowerCase() === seccion.toLowerCase()) {
         sec.trabajos.map(t => {
+
           if (t.name.toLowerCase() === trabajo.toLowerCase()) {
+
             return res.status(200).send(t)
           }
         })
