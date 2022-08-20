@@ -1,14 +1,65 @@
-import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+
+import Head from 'next/head'
+import Card from 'components/card'
 
 import styles from '/styles/adminName.module.css'
 
 const Trabajo = ({ data }) => {
 
+  const router = useRouter()
+  const { seccion, name } = router.query
+
+  const [nombre, setNombre] = useState(data.name)
+
+  const handleDelete = (e) => {
+    const response = window.confirm(`¿Desea eliminar ${nombre} de sus proyectos?`)
+
+    if (response) {
+      window.alert('Eliminado con exito!')
+    }
+  }
+
+  const handleChange = async (e) => {
+    const API = `/api/${seccion}/${name}`
+
+    try {
+      const response = window.prompt('Ingrese el nuevo nombre:')
+      setNombre(response)
+
+      const res = await fetch(API, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          name: nombre,
+          id: data.id
+        })
+      })
+
+      if (res.status === 200 || res.status === 201) return window.alert('Nombre cambiado con exito!')
+
+      throw new Error('Algo salió mal :c')
+    } catch (error) {
+      console.log(error.message)
+      window.alert(error.message)
+    }
+  }
+
   return (
-    <div className={styles.container}>
-      <h1>Hola ID: {data.name}</h1>
-      <Image src={data.image} width={400} height={400} objectFit='scale-down' alt={data.name} />
-    </div>
+    <>
+      <Head>
+        <title>{`Admin/${data.name}`}</title>
+        <link rel='icon' href='/logo.ico' />
+      </Head>
+
+      <div className={styles.container}>
+        <Card name={nombre} image={data.image} width={400} height={350} />
+        <div className={styles.buttonsContainer}>
+          <button onClick={() => handleChange()}>Cambiar nombre</button>
+          <button className={styles.deleteButton} onClick={() => handleDelete()}>Eliminar</button>
+        </div>
+      </div>
+    </>
   )
 }
 
@@ -39,41 +90,16 @@ export async function getStaticPaths() {
   try {
     const paths = []
 
-    const ilustracion = await fetch(`${API}ilustracion`)
-    const ilustracionData = await ilustracion.json()
+    const res = await fetch(`${API}data`)
+    const data = await res.json()
 
-
-    ilustracionData.trabajos.map(({ name }) => {
-      return paths.push({
+    data.map((seccion) => {
+      seccion.trabajos.map(trabajo => (paths.push({
         params: {
-          seccion: 'ilustracion',
-          name: name.toLowerCase()
+          seccion: seccion.link.toLowerCase(),
+          name: trabajo.name.toLowerCase()
         }
-      })
-    })
-
-    const identidad = await fetch(`${API}identidad`)
-    const identidadData = await identidad.json()
-
-    identidadData.trabajos.map(({ name }) => {
-      return paths.push({
-        params: {
-          seccion: 'identidad',
-          name: name.toLowerCase()
-        }
-      })
-    })
-
-    const rapport = await fetch(`${API}rapport`)
-    const rapportData = await rapport.json()
-
-    rapportData.trabajos.map(({ name }) => {
-      return paths.push({
-        params: {
-          seccion: 'rapport',
-          name: name.toLowerCase()
-        }
-      })
+      })))
     })
 
     return {

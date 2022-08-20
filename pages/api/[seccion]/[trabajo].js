@@ -34,27 +34,53 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'PATCH') {
-    const { name, image, id } = req.body
+    const { name, id } = req.body
 
-    if (!name && !image) return res.status(403).json({ message: 'No se han ingresado todos los datos' })
+    console.log(req.body)
 
-    data.map((sec) => {
-      if (sec.seccion.toLowerCase() === seccion.toLowerCase()) {
-        sec.trabajos.map(trabajo => {
+    if (!name) return res.status(403).json({ message: 'No se han ingresado todos los datos' })
 
-          if (trabajo.id === id) {
-            name
-              ? trabajo.name = name
-              : null
-            image
-              ? trabajo.image = image
-              : null
-            return res.status(200).json({ message: 'Trabajo actualizado correctamente!' })
-          }
-        })
-        return res.status(201).send('Nuevo post creado!')
-      }
-    })
+    const filteredData = data.filter((sec) => sec.seccion.toLowerCase() === seccion.toLowerCase())
+    const work = filteredData[0].trabajos.filter((trabajo) => trabajo.id === id)
+
+    console.log(work)
+
+    if (name) {
+      work[0].name = name
+      console.log(work)
+      return res.status(200).json({ message: 'Trabajo actualizado correctamente!' })
+    }
+
+
+    // filteredData[0].trabajos.map(trabajo => {
+    //   if (trabajo.id === id) {
+    //     name
+    //       ? trabajo.name = name
+    //       : null
+    //     image
+    //       ? trabajo.image = image
+    //       : null
+    //     return res.status(200).json({ message: 'Trabajo actualizado correctamente!' })
+    //   }
+    // })
+
+    // data.map((sec) => {
+    //   if (sec.seccion.toLowerCase() === seccion.toLowerCase()) {
+    //     sec.trabajos.map(trabajo => {
+
+    //       if (trabajo.id === id) {
+    //         name
+    //           ? trabajo.name = name
+    //           : null
+    //         image
+    //           ? trabajo.image = image
+    //           : null
+    //         return res.status(200).json({ message: 'Trabajo actualizado correctamente!' })
+    //       }
+    //     })
+    //     return res.status(201).send('Nuevo post creado!')
+    //   }
+    // })
   }
 
   if (req.method === 'DELETE') {

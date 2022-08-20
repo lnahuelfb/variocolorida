@@ -1,11 +1,30 @@
 @import url(/styles/globals.css);
 
-.container{
+.container {
   background-color: var(--blanchedalmond);
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   text-align: center;
-  /* justify-content: center;
-  align-items: center; */
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
+}
+
+.container h1 {
+  font-size: 2.4rem;
+}
+
+.buttonsContainer {
+  display: flex;
+}
+
+.deleteButton {
+  background-color: red;
+  color: white;
+  border: 0;
+  cursor: pointer;
+}
+
+.deleteButton:active {
+  background-color: darkred;
 }

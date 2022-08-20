@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import AdminCard from 'components/adminCard'
 
 import styles from 'styles/secciones.module.css'
+import Head from 'next/head'
 
 const Seccion = ({ data }) => {
 
@@ -10,16 +11,23 @@ const Seccion = ({ data }) => {
   const { seccion } = router.query
 
   return (
-    <div className={styles.container}>
-      <h1>{data.seccion}</h1>
-      <div className={styles.cardContainer}>
-        {
-          data.trabajos && data.trabajos.map(({ name, image, id }) => (
-            <AdminCard name={name} image={image} link={`${seccion}/${name.toLowerCase()}`} key={id} />
-          ))
-        }
+    <>
+      <Head>
+        <title>{`Admin/${data.seccion}`}</title>
+        <link rel='icon' href='/logo.ico' />
+      </Head>
+
+      <div className={styles.container}>
+        <h1>{data.seccion}</h1>
+        <div className={styles.cardContainer}>
+          {
+            data.trabajos && data.trabajos.map(({ name, image, id }) => (
+              <AdminCard name={name} image={image} link={`${seccion}/${name.toLowerCase()}`} key={id} />
+            ))
+          }
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
