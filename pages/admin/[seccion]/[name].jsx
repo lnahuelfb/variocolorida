@@ -11,7 +11,12 @@ const Trabajo = ({ data }) => {
   const router = useRouter()
   const { seccion, name } = router.query
 
-  const [nombre, setNombre] = useState(data.name)
+  console.log(router.query)
+
+  const [trabajo, setTrabajo] = useState({
+    name: data.name,
+    oldName: data.name,
+  })
 
   const handleDelete = (e) => {
     const response = window.confirm(`¿Desea eliminar ${nombre} de sus proyectos?`)
@@ -26,14 +31,17 @@ const Trabajo = ({ data }) => {
 
     try {
       const response = window.prompt('Ingrese el nuevo nombre:')
-      setNombre(response)
+      setTrabajo({ ...trabajo, name: response })
+
+      console.log(trabajo)
 
       const res = await fetch(API, {
         method: 'PATCH',
-        body: JSON.stringify({
-          name: nombre,
-          id: data.id
-        })
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json, text/plain, */*',
+        },
+        body: JSON.stringify(trabajo),
       })
 
       if (res.status === 200 || res.status === 201) return window.alert('Nombre cambiado con exito!')
@@ -53,7 +61,7 @@ const Trabajo = ({ data }) => {
       </Head>
 
       <div className={styles.container}>
-        <Card name={nombre} image={data.image} width={400} height={350} />
+        <Card name={trabajo.name} image={data.image} width={400} height={350} />
         <div className={styles.buttonsContainer}>
           <button onClick={() => handleChange()}>Cambiar nombre</button>
           <button className={styles.deleteButton} onClick={() => handleDelete()}>Eliminar</button>
