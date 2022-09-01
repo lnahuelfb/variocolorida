@@ -1,3 +1,5 @@
+import { dbConnect } from 'utils/mongoose'
+
 const { uuid } = require('uuidv4')
 
 export const data = [{
@@ -99,6 +101,8 @@ export const data = [{
   ],
   id: uuid()
 }]
+
+dbConnect()
 
 export default function handler(req, res) {
   switch (req.method) {
