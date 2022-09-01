@@ -34,7 +34,7 @@ const Seccion = ({ data }) => {
 export async function getStaticProps({ params }) {
   require('dotenv').config()
 
-  const API = process.env.API || 'http://localhost:3000/api/'
+  const API = process.env.API || 'http://localhost:3000/api/data/'
 
   try {
     const res = await fetch(`${API}${params.seccion}`)

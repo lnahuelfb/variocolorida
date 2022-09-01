@@ -1,4 +1,4 @@
-import { data } from "pages/api/data"
+import { data } from "pages/api/data/index"
 
 export default function handler(req, res) {
 

@@ -11,8 +11,6 @@ const Trabajo = ({ data }) => {
   const router = useRouter()
   const { seccion, name } = router.query
 
-  console.log(router.query)
-
   const [trabajo, setTrabajo] = useState({
     name: data.name,
     oldName: data.name,
@@ -27,7 +25,7 @@ const Trabajo = ({ data }) => {
   }
 
   const handleChange = async (e) => {
-    const API = `/api/${seccion}/${name}`
+    const API = `/api/data/${seccion}/${name}`
 
     try {
       const response = window.prompt('Ingrese el nuevo nombre:')
@@ -74,7 +72,7 @@ const Trabajo = ({ data }) => {
 export async function getStaticProps({ params: { seccion, name } }) {
   require('dotenv').config()
 
-  const API = process.env.API || 'http://localhost:3000/api/'
+  const API = process.env.API || 'http://localhost:3000/api/data/'
 
   try {
     const res = await fetch(`${API}${seccion}/${name}`)

@@ -1,4 +1,4 @@
-import { data } from "../data"
+import { data } from "pages/api/data/index"
 import { uuid } from "uuidv4"
 
 export default async function handler(req, res) {
