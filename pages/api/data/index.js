@@ -1,5 +1,5 @@
 import { dbConnect } from 'utils/mongoose'
-
+import secciones from "models/seccion"
 const { uuid } = require('uuidv4')
 
 export const data = [{
@@ -104,7 +104,11 @@ export const data = [{
 
 dbConnect()
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
+
+  const datadb = await secciones.find()
+  console.log(datadb)
+
   switch (req.method) {
     case 'GET':
       return res.status(200).json(data)
@@ -116,18 +120,23 @@ export default function handler(req, res) {
         return res.status(401).json({ message: 'No ingresó todos los datos' })
       }
 
-      const newSection = {
+      const newSection = new secciones({
         seccion: name,
         image: `images/${name}`,
         description,
-        link: name,
+        link: name.toLowerCase(),
         trabajos: [],
         id: uuid()
-      }
+      })
+
+      const savedSection = await newSection.save()
 
       data.push(newSection)
 
+      console.log(savedSection)
+
       return res.status(201).json({ message: `Seccion: ${newSection.seccion} agregada con exito!` })
+
     default:
       return res.status(400).json({ message: 'Este metodo no está soportado' })
   }

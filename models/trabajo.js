@@ -24,4 +24,4 @@ const trabajoSchema = new Schema({
   versionKey: false
 })
 
-export default model('trabajo', trabajoSchema)
+export default models.trabajo ||model('trabajo', trabajoSchema)

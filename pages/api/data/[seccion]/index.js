@@ -1,11 +1,12 @@
+import { dbConnect } from "utils/mongoose"
 import { data } from "pages/api/data/index"
 
 import trabajo from "models/trabajo"
-import seccion from "models/seccion"
+import secciones from "models/seccion"
 
 export default async function handler(req, res) {
 
-  const tasks = await trabajo.find()
+  const tasks = await secciones.find()
   console.log(tasks)
 
   const { seccion } = req.query

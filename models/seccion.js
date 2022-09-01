@@ -42,4 +42,4 @@ const seccionSchema = new Schema({
   versionKey: false
 })
 
-export default model('seccion', seccionSchema)
+export default models.seccion || model('seccion', seccionSchema)
