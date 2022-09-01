@@ -1,7 +1,7 @@
-import Card from './card'
+import Card from 'components/card'
 
 import styles from '/styles/trabajos.module.css'
-import Imagenes from './trabajos-imagenes'
+import Imagenes from 'components/trabajos-imagenes'
 
 const Trabajos = ({ data }) => {
 

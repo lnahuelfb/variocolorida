@@ -72,10 +72,10 @@ const Trabajo = ({ data }) => {
 export async function getStaticProps({ params: { seccion, name } }) {
   require('dotenv').config()
 
-  const API = process.env.API || 'http://localhost:3000/api/data/'
+  const API = process.env.API || 'http://localhost:3000/api/data'
 
   try {
-    const res = await fetch(`${API}${seccion}/${name}`)
+    const res = await fetch(`${API}/${seccion}/${name}`)
     const data = await res.json()
 
     return {
@@ -91,12 +91,12 @@ export async function getStaticProps({ params: { seccion, name } }) {
 export async function getStaticPaths() {
   require('dotenv').config()
 
-  const API = process.env.API || 'http://localhost:3000/api/'
+  const API = process.env.API || 'http://localhost:3000/api/data'
 
   try {
     const paths = []
 
-    const res = await fetch(`${API}data`)
+    const res = await fetch(`${API}`)
     const data = await res.json()
 
     data.map((seccion) => {

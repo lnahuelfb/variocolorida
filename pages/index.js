@@ -33,10 +33,10 @@ export default function Home({ data }) {
 export const getStaticProps = async () => {
   require('dotenv').config()
 
-  const API = process.env.API || 'http://localhost:3000/api/'
+  const API = process.env.API || 'http://localhost:3000/api/data'
 
   try {
-    const res = await fetch(`${API}data`)
+    const res = await fetch(`${API}`)
     const data = await res.json()
 
     return {
