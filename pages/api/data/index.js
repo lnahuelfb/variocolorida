@@ -1,141 +1,125 @@
 import { dbConnect } from 'utils/mongoose'
 import secciones from "models/seccion"
-const { uuid } = require('uuidv4')
 
-export const data = [{
-  seccion: 'Ilustracion',
-  image: '/images/ilustracion.jpeg',
-  link: 'ilustracion',
-  description: 'Diseño e ilustración de personajes, escenografías, paisajes, bocetos solos o combinados con texto.',
-  trabajos: [{
-    name: "Autorretrato",
-    image: '/images/yo.jpg',
-    id: uuid()
-  },
-  {
-    name: 'Catradiys',
-    image: '/images/catradiys.jpeg',
-    id: uuid()
-  },
-  {
-    name: 'Toto',
-    image: '/images/toto.jpeg',
-    id: uuid()
-  },
-  {
-    name: 'Tsukki',
-    image: '/images/tsukki.jpeg',
-    id: uuid()
-  },
-  {
-    name: 'Ilustracion',
-    image: '/images/ilustracion.jpeg',
-    id: uuid()
-  },
-  {
-    name: 'Peridot',
-    image: '/images/peridot.jpeg',
-    id: uuid()
-  }
-  ],
-  id: uuid()
-},
-{
-  seccion: 'Identidad',
-  image: '/images/omnitype.jpg',
-  link: 'identidad',
-  description: 'Diseños de estampas, módulos enfocados en potenciar la identidad de cada cliente.',
-  trabajos: [{
-    name: 'Uniques',
-    image: '/images/uniques.jpg',
-    id: uuid()
-  },
-  {
-    name: 'Omnitype',
-    image: '/images/omnitype.jpg',
-    id: uuid()
-  },
-  {
-    name: 'Lost in',
-    image: '/images/lostin.jpg',
-    id: uuid()
-  },
-  {
-    name: "Detective's Coffee",
-    image: '/images/pikachu.jpg',
-    id: uuid()
-  },
-  {
-    name: 'INADI',
-    image: '/images/inadi.jpg',
-    id: uuid()
-  },
-  {
-    name: 'Monograma',
-    image: '/images/monograma.jpg',
-    id: uuid()
-  }
-  ],
-  id: uuid()
-},
-{
-  seccion: 'Rapport',
-  image: '/images/r2.jpg',
-  link: 'rapport',
-  description: 'Diseños de estampas, módulos enfocados en potenciar la identidad de cada cliente.',
-  trabajos: [{
-    name: 'Ravenclaw',
-    image: '/images/r1.jpg',
-    id: uuid()
-  },
-  {
-    name: 'Slytherin',
-    image: '/images/r2.jpg',
-    id: uuid()
-  },
-  {
-    name: 'Gryffindor',
-    image: '/images/r3.jpg',
-    id: uuid()
-  }
-  ],
-  id: uuid()
-}]
+// export const data = [{
+//   "name": "Ilustracion",
+//   "image": "/images/ilustracion.jpeg",
+//   "link": "ilustracion",
+//   "description": "Diseño e ilustración de personajes, escenografías, paisajes, bocetos solos o combinados con texto.",
+//   "trabajos": [{
+//     "name": "Autorretrato",
+//     "image": "/images/yo.jpg",
+//   },
+//   {
+//     "name": "Catradiys",
+//     "image": "/images/catradiys.jpeg",
+//   },
+//   {
+//     "name": "Toto",
+//     "image": "/images/toto.jpeg",
+//   },
+//   {
+//     "name": "Tsukki",
+//     "image": "/images/tsukki.jpeg",
+//   },
+//   {
+//     "name": "Ilustracion",
+//     "image": "/images/ilustracion.jpeg",   
+//   },
+//   {
+//     "name": "Peridot",
+//     "image": "/images/peridot.jpeg",
+//   }
+//   ],
+// },
+// {
+//   "name": "Identidad",
+//   "image": "/images/omnitype.jpg",
+//   "link": "identidad",
+//   "description": "Diseños de estampas, módulos enfocados en potenciar la identidad de cada cliente.",
+//   "trabajos": [{
+//     "name": "Uniques",
+//     "image": "/images/uniques.jpg",
+//   },
+//   {
+//     "name": "Omnitype",
+//     "image": "/images/omnitype.jpg",
+//   },
+//   {
+//     "name": "Lost in",
+//     "image": "/images/lostin.jpg",
+//   },
+//   {
+//     "name": "Detective's Coffee",
+//     "image": "/images/pikachu.jpg",
+//   },
+//   {
+//     "name": "INADI",
+//     "image": "/images/inadi.jpg",
+//   },
+//   {
+//     "name": "Monograma",
+//     "image": "/images/monograma.jpg",
+//   }
+//   ],
+// },
+// {
+//   "name": "Rapport",
+//   "image": "/images/r2.jpg",
+//   "link": "rapport",
+//   "description": "Diseños de estampas, módulos enfocados en potenciar la identidad de cada cliente.",
+//   trabajos: [{
+//     "name": "Ravenclaw",
+//     "image": "/images/r1.jpg",
+
+//   },
+//   {
+//     "name": "Slytherin",
+//     "image": "/images/r2.jpg",
+
+//   },
+//   {
+//     "name": "Gryffindor",
+//     "image": "/images/r3.jpg",
+//   }
+//   ],
+// }]
 
 dbConnect()
 
 export default async function handler(req, res) {
 
-  const datadb = await secciones.find()
-  console.log(datadb)
+  const data = await secciones.find()
 
   switch (req.method) {
     case 'GET':
       return res.status(200).json(data)
 
     case 'POST':
-      const { name, image, description } = req.body
+      const { name, image, description, trabajos } = req.body
+
+      console.log(req.body)
 
       if (!name || !image || !description) {
         return res.status(401).json({ message: 'No ingresó todos los datos' })
       }
 
       const newSection = new secciones({
-        seccion: name,
-        image: `images/${name}`,
+        name,
+        image: image || `/images/${name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()}`,
         description,
-        link: name.toLowerCase(),
-        trabajos: [],
-        id: uuid()
+        link: name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase(),
+        trabajos: trabajos || [],
       })
+
+      console.log(newSection._id)
 
       const savedSection = await newSection.save()
 
-      data.push(newSection)
+      return res.status(201).json(savedSection)
 
-      console.log(savedSection)
+    case 'DELETE':
 
-      return res.status(201).json({ message: `Seccion: ${newSection.seccion} agregada con exito!` })
 
     default:
       return res.status(400).json({ message: 'Este metodo no está soportado' })

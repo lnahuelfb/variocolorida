@@ -13,16 +13,16 @@ const Seccion = ({ data }) => {
   return (
     <>
       <Head>
-        <title>{`Admin/${data.seccion}`}</title>
+        <title>{`Admin/${data.name}`}</title>
         <link rel='icon' href='/logo.ico' />
       </Head>
 
       <div className={styles.container}>
-        <h1>{data.seccion}</h1>
+        <h1>{data.name}</h1>
         <div className={styles.cardContainer}>
           {
-            data.trabajos && data.trabajos.map(({ name, image, id }) => (
-              <AdminCard name={name} image={image} link={`${seccion}/${name.toLowerCase()}`} key={id} />
+            data.trabajos && data.trabajos.map(({ name, image, _id }) => (
+              <AdminCard name={name} image={image} link={`${seccion}/${_id}`} key={_id} />
             ))
           }
         </div>

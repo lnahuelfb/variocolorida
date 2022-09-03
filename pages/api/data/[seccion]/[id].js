@@ -1,19 +1,24 @@
-import { data } from "pages/api/data/index"
-import { uuid } from "uuidv4"
+import { dbConnect } from "utils/mongoose"
+import secciones from '/models/seccion'
+
+dbConnect()
 
 export default async function handler(req, res) {
-  const { seccion, trabajo } = req.query
+  const { seccion, id } = req.query
 
   if (req.method === 'GET') {
-    const sec = data.filter(data => data.seccion.toLowerCase() === seccion.toLowerCase())
-    const response = sec[0].trabajos.filter(t => t.name.toLowerCase() === trabajo.toLowerCase())
+    try {
+      const data = await secciones.findOne({ trabajos: { $elemMatch: { _id: id } } })
+      const response = data.trabajos.filter(({_id}) => _id.toString() === id)
 
-    return res.status(200).json(response[0])
+      return res.status(200).json(response[0])
+    } catch (error) {
+      return res.status(400).json(error.message)
+    }
   }
 
   if (req.method === 'POST') {
     const { name, image } = req.body
-
 
     if (!name || !image) {
       return res.status(403).json({ message: 'No se han ingresado todos los datos' })
@@ -22,12 +27,11 @@ export default async function handler(req, res) {
     const newPost = {
       name,
       image,
-      id: uuid()
     }
 
-    data.map((sec) => {
-      if (sec.seccion.toLowerCase() === seccion.toLowerCase()) {
-        sec.trabajos.push(newPost)
+    data.map(({ name, trabajos }) => {
+      if (name.toLowerCase() === seccion.toLowerCase()) {
+        trabajos.push(newPost)
         return res.status(201).send('Nuevo post creado!')
       }
     })
@@ -38,7 +42,7 @@ export default async function handler(req, res) {
 
     if (!name) return res.status(403).json({ message: 'No se han ingresado todos los datos' })
 
-    const filteredData = data.filter((sec) => sec.seccion.toLowerCase() === seccion.toLowerCase())
+    const filteredData = data.filter(({ name }) => name.toLowerCase() === seccion.toLowerCase())
     const work = filteredData[0].trabajos.filter((trabajo) => trabajo.name === oldName)
 
     if (name) {

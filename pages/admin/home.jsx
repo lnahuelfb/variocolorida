@@ -22,20 +22,20 @@ const Admin = ({ data }) => {
       <div className={styles.container}>
         <h1>¡Bienvenida {user.name}!</h1>
         {
-          data && data.map(({ id, link, seccion, trabajos }) => {
+          data && data.map((seccion) => {
             return (
-              <div key={id}>
+              <div key={seccion.id}>
                 <h2>
-                  <Link href={link.toLowerCase()}>
+                  <Link href={seccion.link.toLowerCase()}>
                     <a>
-                      {seccion}
+                      {seccion.name}
                     </a>
                   </Link>
                 </h2>
                 <div className={styles.cardContainer}>
                   {
-                    trabajos && trabajos.map(({ name, image, id }) => (
-                      <AdminCard name={name} image={image} link={`${seccion.toLowerCase()}/${name.toLowerCase()}`} key={id} />
+                    seccion.trabajos && seccion.trabajos.map(({ name, image, id }) => (
+                      <AdminCard name={name} image={image} link={`${seccion.name.toLowerCase()}/${name.toLowerCase()}`} key={id} />
                     ))
                   }
                 </div>

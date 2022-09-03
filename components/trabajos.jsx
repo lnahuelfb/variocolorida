@@ -13,20 +13,20 @@ const Trabajos = ({ data }) => {
 
       <div className={styles.cardsContainer}>
         {
-          data && data.map(({ seccion, image, link, description, id }) => (
-            <Card name={seccion} image={image} link={`#${link}`} description={description} key={id} />
+          data && data.map(({ name, image, link, description, _id }) => (
+            <Card name={name} image={image} link={`#${link}`} description={description} key={_id} />
           ))
         }
       </div>
 
       {
-        data && data.map(({ seccion, trabajos, id, link }) => (
-          <div key={id}>
-            <h2 id={link} className={styles.subtitle}>{seccion === 'Ilustracion' ? 'Ilustración' : seccion}</h2>
+        data && data.map(({ name, trabajos, _id, link }) => (
+          <div key={_id}>
+            <h2 id={link} className={styles.subtitle}>{name === 'Ilustracion' ? 'Ilustración' : name}</h2>
 
             <div className={styles.trabajosContainer}>
               {
-                trabajos && trabajos.map(({ name, image, id }) => <Imagenes name={name} image={image} key={id} />)
+                trabajos && trabajos.map(({ name, image, _id }) => <Imagenes name={name} image={image} key={_id} />)
               }
             </div>
           </div>

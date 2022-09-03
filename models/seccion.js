@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
 
 const seccionSchema = new Schema({
-  seccion: {
+  name: {
     type: String,
     required: [true, 'Debe ingresar el nombre de la seccion'],
     unique: true,
@@ -26,17 +26,23 @@ const seccionSchema = new Schema({
     trim: true
   },
   trabajos: {
-    type: Array,
-    required: [true],
-    unique: true,
+    type: [{
+      name: {
+        type: String,
+        required: [true, 'Debe ingresar un nombre'],
+        unique: true,
+        trim: true
+      },
+      image: {
+        type: String,
+        required: [true],
+        unique: true,
+        trim: true
+      },
+    }],
+    required: [false],
     trim: true
   },
-  id: {
-    type: String,
-    required: [true],
-    unique: true,
-    trim: true
-  }
 }, {
   timestamps: true,
   versionKey: false

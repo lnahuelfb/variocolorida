@@ -46,9 +46,9 @@ function Header ({ data }) {
 
             <ul className={styles.menuTrabajos}>
               {
-                data && data.map(({ seccion, link }) => (
-                  <li key={seccion}>
-                    <a href={`#${link.toLowerCase()}`} className={styles.links} onClick={() => setisOpen(!isOpen)}>{seccion === 'Ilustracion' ? "Ilustración" : seccion}</a>
+                data && data.map(({ name, link }) => (
+                  <li key={name}>
+                    <a href={`#${link.toLowerCase()}`} className={styles.links} onClick={() => setisOpen(!isOpen)}>{name === 'Ilustracion' ? "Ilustración" : name}</a>
                   </li>
                 ))
               }

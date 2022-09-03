@@ -9,7 +9,7 @@ import styles from '/styles/adminName.module.css'
 const Trabajo = ({ data }) => {
 
   const router = useRouter()
-  const { seccion, name } = router.query
+  const { seccion, id } = router.query
 
   const [trabajo, setTrabajo] = useState({
     name: data.name,
@@ -25,7 +25,7 @@ const Trabajo = ({ data }) => {
   }
 
   const handleChange = async (e) => {
-    const API = `/api/data/${seccion}/${name}`
+    const API = `/api/data/${seccion}/${id}`
 
     try {
       const response = window.prompt('Ingrese el nuevo nombre:')
@@ -69,14 +69,16 @@ const Trabajo = ({ data }) => {
   )
 }
 
-export async function getStaticProps({ params: { seccion, name } }) {
+export async function getStaticProps({ params: { seccion, id } }) {
   require('dotenv').config()
 
   const API = process.env.API || 'http://localhost:3000/api/data'
 
   try {
-    const res = await fetch(`${API}/${seccion}/${name}`)
+    const res = await fetch(`${API}/${seccion}/${id}`)
     const data = await res.json()
+
+    console.log(data)
 
     return {
       props: {
@@ -100,10 +102,10 @@ export async function getStaticPaths() {
     const data = await res.json()
 
     data.map((seccion) => {
-      seccion.trabajos.map(trabajo => (paths.push({
+      seccion.trabajos.map(({_id}) => (paths.push({
         params: {
           seccion: seccion.link.toLowerCase(),
-          name: trabajo.name.toLowerCase()
+          id: _id,
         }
       })))
     })
