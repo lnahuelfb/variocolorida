@@ -16,7 +16,7 @@ const seccionSchema = new Schema({
   description: {
     type: String,
     required: [false],
-    unique: true,
+    unique: false,
     trim: true
   },
   link: {

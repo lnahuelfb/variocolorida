@@ -20,9 +20,10 @@ const Trabajos = ({ data }) => {
       </div>
 
       {
-        data && data.map(({ name, trabajos, _id, link }) => (
+        data && data.map(({ name, trabajos, description, _id, link }) => (
           <div key={_id}>
             <h2 id={link} className={styles.subtitle}>{name === 'Ilustracion' ? 'Ilustración' : name}</h2>
+            <p>{description}</p>
 
             <div className={styles.trabajosContainer}>
               {
