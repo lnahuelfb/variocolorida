@@ -1,5 +1,5 @@
 import { dbConnect } from "utils/mongoose"
-import secciones from '/models/seccion'
+import secciones from 'models/secciones'
 
 dbConnect()
 
@@ -8,8 +8,14 @@ export default async function handler(req, res) {
 
   if (req.method === 'GET') {
     try {
-      const data = await secciones.findOne({ trabajos: { $elemMatch: { _id: id } } })
-      const response = data.trabajos.filter(({_id}) => _id.toString() === id)
+      console.log(secciones, seccion)
+      const data = await secciones.findOne({
+        link: seccion
+      })
+
+      const response = data.trabajos.filter(({ _id }) => _id.toString() === id)
+
+      console.log(response)
 
       return res.status(200).json(response[0])
     } catch (error) {

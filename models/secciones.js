@@ -1,6 +1,6 @@
-import { Schema, model, models } from "mongoose";
+import mongoose, { Schema, model, models, Types } from "mongoose";
 
-const seccionSchema = new Schema({
+const seccionesSchema = new Schema({
   name: {
     type: String,
     required: [true, 'Debe ingresar el nombre de la seccion'],
@@ -38,7 +38,7 @@ const seccionSchema = new Schema({
         required: [true],
         unique: true,
         trim: true
-      },
+      }
     }],
     required: [false],
     trim: true
@@ -48,4 +48,4 @@ const seccionSchema = new Schema({
   versionKey: false
 })
 
-export default models.seccion || model('seccion', seccionSchema)
+export default models.secciones || model('secciones', seccionesSchema)

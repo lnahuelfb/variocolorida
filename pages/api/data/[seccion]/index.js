@@ -1,5 +1,5 @@
 import { dbConnect } from "utils/mongoose"
-import secciones from "models/seccion"
+import secciones from "models/secciones"
 
 dbConnect()
 
