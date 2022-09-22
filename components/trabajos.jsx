@@ -3,7 +3,7 @@ import Card from 'components/card'
 import styles from '/styles/trabajos.module.css'
 import Imagenes from 'components/trabajos-imagenes'
 
-const Trabajos = ({ data }) => {
+const Trabajos = ({ secciones, trabajos }) => {
 
   return (
     <div className={styles.container}>
@@ -13,21 +13,23 @@ const Trabajos = ({ data }) => {
 
       <div className={styles.cardsContainer}>
         {
-          data && data.map(({ name, image, link, description, _id }) => (
+          secciones && secciones.map(({ name, image, link, description, _id }) => (
             <Card name={name} image={image} link={`#${link}`} description={description} key={_id} />
           ))
         }
       </div>
 
       {
-        data && data.map(({ name, trabajos, description, _id, link }) => (
+        secciones && secciones.map(({ name, description, _id, link }) => (
           <div key={_id}>
             <h2 id={link} className={styles.subtitle}>{name === 'Ilustracion' ? 'Ilustración' : name}</h2>
             <p>{description}</p>
 
             <div className={styles.trabajosContainer}>
               {
-                trabajos && trabajos.map(({ name, image, _id }) => <Imagenes name={name} image={image} key={_id} />)
+                trabajos && trabajos.map((trabajo) => {
+                  if (trabajo.seccion === link) return (<Imagenes name={trabajo.name} image={trabajo.image} key={trabajo._id} />)
+                })
               }
             </div>
           </div>

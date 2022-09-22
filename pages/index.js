@@ -6,7 +6,7 @@ import Trabajos from '/components/trabajos'
 import Contacto from '/components/contacto'
 import Footer from '/components/footer'
 
-export default function Home({ data }) {
+export default function Home({ secciones, trabajos }) {
 
   return (
     <>
@@ -19,10 +19,10 @@ export default function Home({ data }) {
       </Head>
 
       <div id='inicio'>
-        <Header data={data} />
+        <Header secciones={secciones} />
         <Inicio />
         <SobreMi />
-        <Trabajos data={data} />
+        <Trabajos secciones={secciones} trabajos={trabajos} />
         <Contacto />
         <Footer />
       </div>
@@ -33,15 +33,18 @@ export default function Home({ data }) {
 export const getStaticProps = async () => {
   require('dotenv').config()
 
-  const API = process.env.API || 'http://localhost:3000/api/data'
+  const API = process.env.API || 'http://localhost:3000/api/'
 
   try {
-    const res = await fetch(`${API}`)
-    const data = await res.json()
+    const seccionesRes = await fetch(`${API}secciones`)
+    const secciones = await seccionesRes.json()
+    const trabajosRes = await fetch(`${API}trabajos`)
+    const trabajos = await trabajosRes.json()
 
     return {
       props: {
-        data
+        secciones,
+        trabajos
       }
     }
 

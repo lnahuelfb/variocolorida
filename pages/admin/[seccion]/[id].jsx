@@ -6,7 +6,7 @@ import Card from 'components/card'
 
 import styles from '/styles/adminName.module.css'
 
-const Trabajo = ({ data }) => {
+const Trabajo = ({ trabajos }) => {
 
   const router = useRouter()
   const { seccion, id } = router.query
@@ -25,7 +25,7 @@ const Trabajo = ({ data }) => {
   }
 
   const handleChange = async (e) => {
-    const API = `/api/data/${seccion}/${id}`
+    const API = `/api/trabajos/${id}`
 
     try {
       const response = window.prompt('Ingrese el nuevo nombre:')
@@ -72,17 +72,17 @@ const Trabajo = ({ data }) => {
 export async function getStaticProps({ params: { seccion, id } }) {
   require('dotenv').config()
 
-  const API = process.env.API || 'http://localhost:3000/api/data'
+  const API = process.env.API || 'http://localhost:3000/api/'
 
   try {
-    const res = await fetch(`${API}/${seccion}/${id}`)
-    const data = await res.json()
+    const res = await fetch(`${API}trabajos/${id}`)
+    const trabajos = await res.json()
 
     console.log(data)
 
     return {
       props: {
-        data
+        trabajos
       }
     }
   } catch (error) {
@@ -93,22 +93,22 @@ export async function getStaticProps({ params: { seccion, id } }) {
 export async function getStaticPaths() {
   require('dotenv').config()
 
-  const API = process.env.API || 'http://localhost:3000/api/data'
+  const API = process.env.API || 'http://localhost:3000/api/'
 
   try {
     const paths = []
 
-    const res = await fetch(`${API}`)
-    const data = await res.json()
+    const trabajosRes = await fetch(`${API}trabajos`)
+    const trabajos = await trabajosRes.json()
 
-    data.map((seccion) => {
-      seccion.trabajos.map(({_id}) => (paths.push({
-        params: {
-          seccion: seccion.link.toLowerCase(),
-          id: _id,
-        }
-      })))
-    })
+    trabajos.map(({ _id }) => (paths.push({
+      params: {
+        id: _id,
+        seccion
+      }
+    })))
+
+    console.log(paths)
 
     return {
       paths,

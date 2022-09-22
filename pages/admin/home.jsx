@@ -5,7 +5,7 @@ import AdminCard from 'components/adminCard'
 
 import styles from '/styles/admin.module.css'
 
-const Admin = ({ data }) => {
+const Admin = ({ secciones, trabajos }) => {
 
   const user = {
     name: 'Variocolorida',
@@ -22,21 +22,21 @@ const Admin = ({ data }) => {
       <div className={styles.container}>
         <h1>¡Bienvenida {user.name}!</h1>
         {
-          data && data.map((seccion) => {
+          secciones && secciones.map(({_id, link, name}) => {
             return (
-              <div key={seccion.id}>
+              <div key={_id}>
                 <h2>
-                  <Link href={seccion.link.toLowerCase()}>
+                  <Link href={link.toLowerCase()}>
                     <a>
-                      {seccion.name}
+                      {name}
                     </a>
                   </Link>
                 </h2>
                 <div className={styles.cardContainer}>
                   {
-                    seccion.trabajos && seccion.trabajos.map(({ name, image, id }) => (
-                      <AdminCard name={name} image={image} link={`${seccion.name.toLowerCase()}/${name.toLowerCase()}`} key={id} />
-                    ))
+                    trabajos && trabajos.map((trabajo) => {
+                      if (link === trabajo.seccion) return (<AdminCard name={trabajo.name} image={trabajo.image} link={`${name.toLowerCase()}/${trabajo._id}`} key={trabajo._id} />)
+                    })
                   }
                 </div>
               </div>
@@ -54,12 +54,15 @@ export const getStaticProps = async () => {
   const API = process.env.API || 'http://localhost:3000/api/'
 
   try {
-    const res = await fetch(`${API}data`)
-    const data = await res.json()
+    const seccionesRes = await fetch(`${API}secciones`)
+    const secciones = await seccionesRes.json()
+    const trabajosRes = await fetch(`${API}trabajos`)
+    const trabajos = await trabajosRes.json()
 
     return {
       props: {
-        data,
+        secciones,
+        trabajos
       }
     }
 

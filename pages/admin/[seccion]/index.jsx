@@ -5,7 +5,7 @@ import AdminCard from 'components/adminCard'
 import styles from 'styles/secciones.module.css'
 import Head from 'next/head'
 
-const Seccion = ({ data }) => {
+const Seccion = ({ secciones, trabajos }) => {
 
   const router = useRouter()
   const { seccion } = router.query
@@ -13,15 +13,15 @@ const Seccion = ({ data }) => {
   return (
     <>
       <Head>
-        <title>{`Admin/${data.name}`}</title>
+        <title>{`Admin/${secciones.name}`}</title>
         <link rel='icon' href='/logo.ico' />
       </Head>
 
       <div className={styles.container}>
-        <h1>{data.name}</h1>
+        <h1>{secciones.name}</h1>
         <div className={styles.cardContainer}>
           {
-            data.trabajos && data.trabajos.map(({ name, image, _id }) => (
+            trabajos && trabajos.map(({ name, image, _id }) => (
               <AdminCard name={name} image={image} link={`${seccion}/${_id}`} key={_id} />
             ))
           }
@@ -34,15 +34,18 @@ const Seccion = ({ data }) => {
 export async function getStaticProps({ params }) {
   require('dotenv').config()
 
-  const API = process.env.API || 'http://localhost:3000/api/data/'
+  const API = process.env.API || 'http://localhost:3000/api/'
 
   try {
-    const res = await fetch(`${API}${params.seccion}`)
-    const data = await res.json()
+    const seccionesRes = await fetch(`${API}secciones`)
+    const secciones = await seccionesRes.json()
+    const trabajosRes = await fetch(`${API}trabajos`)
+    const trabajos = await trabajosRes.json()
 
     return {
       props: {
-        data
+        secciones,
+        trabajos
       }
     }
   } catch (error) {
@@ -56,10 +59,12 @@ export async function getStaticPaths() {
   const API = process.env.API || 'http://localhost:3000/api/'
 
   try {
-    const res = await fetch(`${API}data`)
-    const data = await res.json()
+    const res = await fetch(`${API}secciones`)
+    const secciones = await res.json()
 
-    const paths = data.map(({ link }) => ({ params: { seccion: link } }))
+    const paths = secciones.map(({ link }) => ({ params: { seccion: link } }))
+
+    console.log(paths)
 
     return {
       paths,
