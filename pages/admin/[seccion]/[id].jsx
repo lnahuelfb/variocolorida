@@ -6,15 +6,8 @@ import Card from 'components/card'
 
 import styles from '/styles/adminName.module.css'
 
-const Trabajo = ({ trabajos }) => {
-
-  const router = useRouter()
-  const { seccion, id } = router.query
-
-  const [trabajo, setTrabajo] = useState({
-    name: data.name,
-    oldName: data.name,
-  })
+const Trabajo = ({ data }) => {
+  const [trabajo, setTrabajo] = useState(data)
 
   const handleDelete = (e) => {
     const response = window.confirm(`¿Desea eliminar ${nombre} de sus proyectos?`)
@@ -25,26 +18,25 @@ const Trabajo = ({ trabajos }) => {
   }
 
   const handleChange = async (e) => {
-    const API = `/api/trabajos/${id}`
+    const API = `/api/trabajos/${trabajo._id}`
 
     try {
       const response = window.prompt('Ingrese el nuevo nombre:')
-      setTrabajo({ ...trabajo, name: response })
 
-      console.log(trabajo)
+      trabajo.name = response
 
-      const res = await fetch(API, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json, text/plain, */*',
-        },
-        body: JSON.stringify(trabajo),
-      })
+      // const res = await fetch(API, {
+      //   method: 'PATCH',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Accept': 'application/json, text/plain, */*',
+      //   },
+      //   body: JSON.stringify(response),
+      // })
 
-      if (res.status === 200 || res.status === 201) return window.alert('Nombre cambiado con exito!')
+      // if (res.status === 200 || res.status === 201) return window.alert('Nombre cambiado con exito!')
 
-      throw new Error('Algo salió mal :c')
+      // throw new Error('Algo salió mal :c')
     } catch (error) {
       console.log(error.message)
       window.alert(error.message)
@@ -54,12 +46,12 @@ const Trabajo = ({ trabajos }) => {
   return (
     <>
       <Head>
-        <title>{`Admin/${data.name}`}</title>
+        <title>{`Admin/${trabajo.name}`}</title>
         <link rel='icon' href='/logo.ico' />
       </Head>
 
       <div className={styles.container}>
-        <Card name={trabajo.name} image={data.image} width={400} height={350} />
+        <Card name={trabajo.name} image={trabajo.image} width={400} height={350} />
         <div className={styles.buttonsContainer}>
           <button onClick={() => handleChange()}>Cambiar nombre</button>
           <button className={styles.deleteButton} onClick={() => handleDelete()}>Eliminar</button>
@@ -76,13 +68,11 @@ export async function getStaticProps({ params: { seccion, id } }) {
 
   try {
     const res = await fetch(`${API}trabajos/${id}`)
-    const trabajos = await res.json()
-
-    console.log(data)
+    const data = await res.json()
 
     return {
       props: {
-        trabajos
+        data
       }
     }
   } catch (error) {
@@ -101,20 +91,17 @@ export async function getStaticPaths() {
     const trabajosRes = await fetch(`${API}trabajos`)
     const trabajos = await trabajosRes.json()
 
-    trabajos.map(({ _id }) => (paths.push({
+    trabajos.map(({ _id, seccion }) => (paths.push({
       params: {
         id: _id,
         seccion
       }
     })))
 
-    console.log(paths)
-
     return {
       paths,
       fallback: false
     }
-
   } catch (error) {
     console.log(error)
     return { paths: [], fallback: false }

@@ -13,17 +13,21 @@ const Seccion = ({ secciones, trabajos }) => {
   return (
     <>
       <Head>
-        <title>{`Admin/${secciones.name}`}</title>
+        <title>{`Admin/${seccion}`}</title>
         <link rel='icon' href='/logo.ico' />
       </Head>
 
       <div className={styles.container}>
-        <h1>{secciones.name}</h1>
+        {
+          secciones.map(({ link, name }) => {
+            if (seccion === link) return (<h1 key={name}>{name}</h1>)
+          })
+        }
         <div className={styles.cardContainer}>
           {
-            trabajos && trabajos.map(({ name, image, _id }) => (
-              <AdminCard name={name} image={image} link={`${seccion}/${_id}`} key={_id} />
-            ))
+            trabajos && trabajos.map((trabajo) => {
+              if (seccion === trabajo.seccion) return (<AdminCard name={trabajo.name} image={trabajo.image} link={`${seccion}/${trabajo._id}`} key={trabajo._id} />)
+            })
           }
         </div>
       </div>
@@ -63,8 +67,6 @@ export async function getStaticPaths() {
     const secciones = await res.json()
 
     const paths = secciones.map(({ link }) => ({ params: { seccion: link } }))
-
-    console.log(paths)
 
     return {
       paths,
