@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
   if (req.method === 'GET') {
     try {
-      const jobs = await trabajos.findOne({ _id: id })
+      const jobs = await trabajos.findById(id)
 
       return res.status(200).json(jobs)
     } catch (error) {
@@ -16,23 +16,32 @@ export default async function handler(req, res) {
     }
   }
 
-  if (req.method === 'PATCH') {
-    const { name } = req.body
+  if (req.method === 'PUT') {
+    const { id } = req.query
+    const { name, description } = req.body
 
     if (!name) return res.status(403).json({ message: 'No se han ingresado todos los datos' })
 
-    work[0].name = name
-    console.log(work[0])
-    return res.status(200).json({ message: 'Trabajo actualizado correctamente!' })
-
+    try {
+      const editedJob = await trabajos.updateOne({ _id: id }, {
+        $set: {
+          name,
+          description
+        }
+      })
+      return res.status(200).json(editedJob)
+    } catch (error) {
+      console.log(error)
+      return res.status(400).json(error)
+    }
   }
 
   if (req.method === 'DELETE') {
     const { id } = req.body
 
-    data.trabajos.filter(trabajo => trabajo.id !== id)
+    const deletedUser = await trabajos.findByIdAndRemove(id)
 
-    return res.status(200).json({ message: 'Trabajo eliminado con exito!' })
+    return res.status(200).json(deletedUser)
   }
 
   return res.status(400).json({ message: 'Este metodo no está soportado' })

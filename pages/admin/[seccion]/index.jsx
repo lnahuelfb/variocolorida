@@ -9,11 +9,11 @@ const Seccion = ({ secciones, trabajos }) => {
 
   const router = useRouter()
   const { seccion } = router.query
-
+  
   return (
     <>
       <Head>
-        <title>{`Admin/${seccion}`}</title>
+        <title>{`Admin/${seccion.charAt(0).toUpperCase() + seccion.slice(1)}`}</title>
         <link rel='icon' href='/logo.ico' />
       </Head>
 

@@ -24,19 +24,19 @@ const Trabajo = ({ data }) => {
       const response = window.prompt('Ingrese el nuevo nombre:')
 
       trabajo.name = response
+      
+      const res = await fetch(API, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json, text/plain, */*',
+        },
+        body: JSON.stringify(response),
+      })
 
-      // const res = await fetch(API, {
-      //   method: 'PATCH',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Accept': 'application/json, text/plain, */*',
-      //   },
-      //   body: JSON.stringify(response),
-      // })
+      if (res.status === 200 || res.status === 201) return window.alert('Nombre cambiado con exito!')
 
-      // if (res.status === 200 || res.status === 201) return window.alert('Nombre cambiado con exito!')
-
-      // throw new Error('Algo salió mal :c')
+      throw new Error('Algo salió mal :c')
     } catch (error) {
       console.log(error.message)
       window.alert(error.message)
