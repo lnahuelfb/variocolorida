@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 import Head from 'next/head'
@@ -24,7 +23,7 @@ const Trabajo = ({ data }) => {
       const response = window.prompt('Ingrese el nuevo nombre:')
 
       trabajo.name = response
-      
+
       const res = await fetch(API, {
         method: 'PATCH',
         headers: {
@@ -61,7 +60,7 @@ const Trabajo = ({ data }) => {
   )
 }
 
-export async function getStaticProps({ params: { seccion, id } }) {
+export async function getStaticProps({ params: { id } }) {
   require('dotenv').config()
 
   const API = process.env.API || 'http://localhost:3000/api/'

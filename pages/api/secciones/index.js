@@ -1,31 +1,24 @@
 import { dbConnect } from 'utils/mongoose'
-import secciones from "models/secciones"
+import { getAllSections, postSection } from 'utils/apiFunctions'
 
 dbConnect()
 
 export default async function handler(req, res) {
 
-  const sections = await secciones.find()
-
   switch (req.method) {
     case 'GET':
+      const sections = await getAllSections()
       return res.status(200).json(sections)
 
     case 'POST':
       const { name, image, description } = req.body
 
-      if (!name || !image || !description) return res.status(401).json({ message: 'No ingresó todos los datos' })
-
-      const newSection = new secciones({
-        name,
-        image: image || `/images/${name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()}`,
-        description,
-        link: name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase(),
-      })
-
-      const savedSection = await newSection.save()
-
-      return res.status(201).json(savedSection)
+      try {
+        const savedSection = await postSection(name, image, description)
+        return res.status(201).json(savedSection)
+      } catch (error) {
+        return res.status(400).json(error)
+      }
 
     default:
       return res.status(400).json({ message: 'Este metodo no está soportado' })
