@@ -1,4 +1,5 @@
 import { connect, connection } from 'mongoose'
+require('dotenv').config()
 
 const conn = {
   isConnected: false
