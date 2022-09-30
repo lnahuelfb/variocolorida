@@ -4,22 +4,29 @@ import styles from '/styles/card.module.css'
 const Card = ({ name, image, link, description }) => {
   return (
     <div className={styles.container}>
-      <figure className={styles.imageContainer}>
-        <Image src={image} alt={name} width={225} height={200} objectFit='scale-down' />
-      </figure>
+      <div className={styles.mainContent}>
+        <figure className={styles.imageContainer}>
+          <Image src={image} alt={name} width={225} height={200} objectFit='scale-down' />
+        </figure>
 
-      <h2 className={styles.title}>
-        {
-          link
-            ? <a href={link} className={styles.link}>{name}</a>
-            : name
-        }
-      </h2>
+        <h2 className={styles.title}>
+          {
+            name
+          }
+        </h2>
+      </div>
 
       <div className={styles.overlay}>
-        <div className={styles.content}>
+        <p>
           {description}
-        </div>
+        </p>
+        <button className={styles.button}>
+          {
+            link
+              ? <a href={link} className={styles.link}>{name}</a>
+              : name
+          }
+        </button>
       </div>
 
     </div>
