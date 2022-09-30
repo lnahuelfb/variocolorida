@@ -118,11 +118,11 @@
   .itemsOpen {
     display: flex;
     flex-direction: column;
-    height: calc(100% - 10.4rem);
+    height: calc(100% - 10rem);
     width: 100%;
     justify-content: space-evenly;
     position: fixed;
-    top: 10.4rem;
+    top: 10rem;
     left: 0%;
     bottom: 0;
     background-color: var(--blanchedalmond);

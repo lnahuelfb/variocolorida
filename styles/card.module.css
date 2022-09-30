@@ -11,6 +11,26 @@
   border-radius: 2.5rem;
   margin: 1rem;
   background-color: white;
+  transition: all ease-in-out 1s;
+}
+
+.overlay {
+  display: none;
+  text-align: center;
+  font-size: 2rem;
+  scale: (0);
+}
+
+.container:hover .imageContainer,
+.container:hover .title,
+.container:hover .link {
+  display: none;
+}
+
+.container:hover .overlay {
+  display: flex;
+  transform: scale(1);
+  transition: all 0.8s ease-in 0s;
 }
 
 .title {
