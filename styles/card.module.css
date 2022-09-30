@@ -21,6 +21,7 @@
   justify-content: center;
   flex-direction: column;
   height: inherit;
+  width: inherit;
   border-radius: inherit;
   z-index: 1;
   transition: all ease-in 1s;
