@@ -1,7 +1,7 @@
 @import url(/styles/globals.css);
 
 .container {
-  width: var(--width);
+  width: 100%;
   padding: var(--padding);
   padding-top: var(--padding-top-title);
   display: flex;
@@ -55,7 +55,7 @@
   .container {
     padding: var(--responsive-padding);
     padding-top: var(--padding-top-title);
-    width: var(--responsive-width);
+    width: 100%;
   }
 
   .bienvenida {

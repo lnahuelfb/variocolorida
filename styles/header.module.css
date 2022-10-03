@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   height: 10.4rem;
-  width: var(--width);
+  width: 100%;
   padding: var(--padding);
   position: fixed;
   top: 0;
@@ -88,6 +88,10 @@
 }
 
 @media screen and (max-width: 920px) {
+  .container {
+    width: 100%;
+  }
+
   .burgerContainer {
     width: 100px;
     margin: 0;

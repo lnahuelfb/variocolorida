@@ -35,7 +35,7 @@ const Admin = ({ secciones, trabajos }) => {
                 <div className={styles.cardContainer}>
                   {
                     trabajos && trabajos.map((trabajo) => {
-                      if (link === trabajo.seccion) return (<AdminCard name={trabajo.name} image={trabajo.image} link={`${name.toLowerCase()}/${trabajo._id}`} key={trabajo._id} />)
+                      if (link === trabajo.seccion) return (<AdminCard name={trabajo.name} image={trabajo.image} link={`${link}/${trabajo._id}`} key={trabajo._id} />)
                     })
                   }
                 </div>

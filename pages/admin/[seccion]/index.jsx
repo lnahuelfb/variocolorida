@@ -19,7 +19,7 @@ const Seccion = ({ secciones, trabajos }) => {
 
       <div className={styles.container}>
         {
-          secciones.map(({ link, name }) => {
+          secciones && secciones.map(({ link, name }) => {
             if (seccion === link) return (<h1 key={name}>{name}</h1>)
           })
         }
