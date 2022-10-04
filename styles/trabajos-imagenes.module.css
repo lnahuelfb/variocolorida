@@ -10,6 +10,19 @@
 @media screen and (max-width: 1111px) {
   .container {
     width: 30rem;
+    margin: 2rem 4rem;
+  }
+}
+
+@media screen and (max-width: 951px) {
+  .container {
+    margin: 2rem;
+  }
+}
+
+@media screen and (max-width: 821px) {
+  .container {
+    margin: 2rem 1rem;
   }
 }
 

@@ -98,6 +98,14 @@
 @media screen and (max-width: 1111px) {
   .container {
     width: 25rem;
+    height: 27rem;
+    margin: 2rem 1rem;
+  }
+}
+
+@media screen and (max-width: 959px) {
+  .container {
+    margin: 2rem 3rem;
   }
 }
 

@@ -16,6 +16,8 @@ export const postSection = async (name, image, description) => {
   })
 
   try {
+
+    if (description.length <= 1) description = null
     const newSection = new secciones({
       name,
       image: image || `/images/${name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()}`,

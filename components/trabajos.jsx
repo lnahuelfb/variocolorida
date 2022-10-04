@@ -1,7 +1,7 @@
 import Card from 'components/card'
+import Imagenes from 'components/trabajos-imagenes'
 
 import styles from '/styles/trabajos.module.css'
-import Imagenes from 'components/trabajos-imagenes'
 
 const Trabajos = ({ secciones, trabajos }) => {
 
@@ -22,7 +22,7 @@ const Trabajos = ({ secciones, trabajos }) => {
       {
         secciones && secciones.map(({ name, description, _id, link }) => (
           <div key={_id}>
-            <h2 id={link} className={styles.subtitle}>{name === 'Ilustracion' ? 'Ilustración' : name}</h2>
+            <h2 id={link} className={styles.subtitle}>{name}</h2>
             <p>{description}</p>
 
             <div className={styles.trabajosContainer}>

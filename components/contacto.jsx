@@ -27,7 +27,6 @@ const Contacto = () => {
     setLoading(true)
 
     try {
-
       const res = await fetch(API, {
         method: 'POST',
         headers: {
@@ -90,7 +89,6 @@ const Contacto = () => {
         <input
           name='message'
           value={message.message}
-          type='texta'
           placeholder='Consulta'
           className={styles.input}
           onChange={handleChange}

@@ -1,9 +1,9 @@
 import { useState } from 'react'
+import Image from 'next/image'
 
 import { IconContext } from 'react-icons'
 import { FaBars } from 'react-icons/fa'
 
-import Image from 'next/image'
 import styles from '/styles/header.module.css'
 
 function Header({ secciones }) {
