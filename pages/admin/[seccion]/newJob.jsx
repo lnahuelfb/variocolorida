@@ -1,7 +1,8 @@
-import Head from "next/head"
+import Head from 'next/head'
+import Image from 'next/image'
 
-import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 import styles from 'styles/newJob.module.css'
 
@@ -10,11 +11,17 @@ const newJob = () => {
   const router = useRouter()
   const { seccion } = router.query
 
+  const cloudinary_url = 'https://api.cloudinary.com/v1_1/dwzx5ivan/image/upload'
+  const upload_preset = 'qW3J3xQEYJHBwXuRgbncvcTplQM'
+
   const [newJob, setNewJob] = useState({
     name: '',
-    image: "",
-    description: ""
+    image: '',
+    description: ''
   })
+
+  const [file, setFile] = useState()
+  const [pathImage, setPathImage] = useState('')
 
   const handleChange = (e) => {
     setNewJob({
@@ -26,38 +33,63 @@ const newJob = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await fetch('/api/trabajos', {
+      console.log(file, upload_preset)
+      const sendImage = await fetch(cloudinary_url, {
+        method: 'POST',
+        body: JSON.stringify({
+          file,
+          upload_preset
+        }),
+        headers: {
+          'Content-type': 'multipart'
+        }
+      })
+
+      if (sendImage.status === 200) {
+        console.log(sendImage)
+/*         const res = await fetch('/api/trabajos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json, text/plain, */*',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({
           ...newJob,
-          seccion
+          seccion,
+          file
         })
       })
 
       if (res.status === 200 || res.status === 201) return window.alert('¡Trabajo creado con exito!')
 
-      throw new Error('Algo salió mal')
+      throw new Error('Algo salió mal') */
+    }
     } catch (error) {
       console.error(error)
     }
   }
-  useEffect(() => {
 
-    console.log(newJob.image)
+  const onFileChange = (e) => {
+    setNewJob({
+      ...newJob,
+      [e.target.name]: e.target.value
+    })
 
-    if (newJob.image.length > 1) {
-      const image = newJob.image.split("\\") || ""
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0]
 
-      console.log(image[2])
-      return () => setNewJob({ image: image[2] })
+      if (file.type.includes('image')) {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+
+        reader.onload = () => {
+          setPathImage(reader.result)
+        }
+
+        setFile(file)
+      } else console.log('No es una imagen.')
     }
-
-    return;
-  }, [newJob.image])
+  }
 
   return (
     <>
@@ -70,8 +102,8 @@ const newJob = () => {
         <h1>Creando un nuevo trabajo en {seccion}</h1>
         <form onSubmit={handleSubmit} className={styles.form}>
           <input
-            name="name"
-            type="text"
+            name='name'
+            type='text'
             value={newJob.name}
             placeholder='Nombre del trabajo'
             className={styles.input}
@@ -79,25 +111,33 @@ const newJob = () => {
             required
           />
           <input
-            name="description"
-            type="text"
+            name='description'
+            type='text'
             value={newJob.description}
             placeholder='Descripcion del trabajo'
             className={styles.input}
             onChange={handleChange}
             required />
-          <input
-            name="image"
-            type="file"
-            accept="image/png, .jpeg, .jpg, image/gif"
-            value={newJob.image}
-            placeholder='Imagen del trabajo'
-            className={styles.input}
-            onChange={handleChange}
-            required
-          />
+          <div className={styles.imageContainer}>
+            <figure>
+              {
+                pathImage && <Image src={pathImage} className={styles.image} width={550} height={265} alt={newJob.image} objectFit='scale-down' />
+              }
+            </figure>
+            <input
+              name='image'
+              type='file'
+              accept='image/png, .jpeg, .jpg, image/gif'
+              placeholder='Imagen del trabajo'
+              value={newJob.image}
+              className={styles.input}
+              onChange={onFileChange}
+              id='img-upload'
+              required
+            />
+          </div>
+          <button type='submit' className={styles.button}>Crear</button>
         </form>
-        <button type="submit" className={styles.button}>Crear</button>
       </div>
     </>
   )

@@ -41,6 +41,8 @@ export const getStaticProps = async () => {
     const trabajosRes = await fetch(`${API}trabajos`)
     const trabajos = await trabajosRes.json()
 
+    secciones.sort((a, b) => a.name.localeCompare(b.name))
+
     return {
       props: {
         secciones,

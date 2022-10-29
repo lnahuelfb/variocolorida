@@ -1,5 +1,6 @@
 import secciones from "models/secciones"
 import trabajos from "models/trabajos"
+import { compress } from "next.config"
 
 //#Get All
 export const getAllSections = async () => await secciones.find()
@@ -39,16 +40,18 @@ export const postJob = async (name, seccion, image, description) => {
     message: 'No se han ingresado todos los datos necesarios.'
   })
 
+  const img = image.split("\\") || ""
+
   try {
     const newJob = new trabajos({
       name,
       seccion,
-      image,
+      image: '/image/' + img[2],
       description
     })
-
-    const jobSaved = await newJob.save()
-    return jobSaved
+    console.log(newJob)
+/*  const jobSaved = await newJob.save() */
+    return newJob
   } catch (error) {
     console.log(error)
     throw new Error(error)
