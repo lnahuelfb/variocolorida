@@ -27,15 +27,32 @@ const newJob = () => {
     })
   }
 
+  const sendImage = () => {
+    e.preventDefault()
+    try {
+
+
+
+      setNewJob({
+        name: '',
+        image: '',
+        description: ''
+      })
+      setFile()
+      setPathImage('')
+    } catch (error) {
+
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      console.log(file, upload_preset)
-      const sendImage = await fetch('cloudinary://834386741212594:qW3J3xQEYJHBwXuRgbncvcTplQM@dwzx5ivan', {
+      console.log(file)
+      const sendImage = await fetch('/api/uploader', {
         method: 'POST',
         body: JSON.stringify({
-          file,
-          upload_preset
+          file
         }),
         headers: {
           'Content-type': 'multipart'
@@ -44,23 +61,23 @@ const newJob = () => {
 
       if (sendImage.status === 200) {
         console.log(sendImage)
-/*         const res = await fetch('/api/trabajos', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({
-          ...newJob,
-          seccion,
-          file
-        })
-      })
-
-      if (res.status === 200 || res.status === 201) return window.alert('¡Trabajo creado con exito!')
-
-      throw new Error('Algo salió mal') */
-    }
+        /*         const res = await fetch('/api/trabajos', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                  ...newJob,
+                  seccion,
+                  file
+                })
+              })
+        
+              if (res.status === 200 || res.status === 201) return window.alert('¡Trabajo creado con exito!')
+        
+              throw new Error('Algo salió mal') */
+      }
     } catch (error) {
       console.error(error)
     }
