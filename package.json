@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@strapi/provider-upload-cloudinary": "^4.4.7",
     "caniuse-lite": "1.0.30001397",
     "dotenv": "16.0.1",
     "mongodb": "4.9.1",

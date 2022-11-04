@@ -11,9 +11,6 @@ const newJob = () => {
   const router = useRouter()
   const { seccion } = router.query
 
-  const cloudinary_url = 'https://api.cloudinary.com/v1_1/dwzx5ivan/image/upload'
-  const upload_preset = 'qW3J3xQEYJHBwXuRgbncvcTplQM'
-
   const [newJob, setNewJob] = useState({
     name: '',
     image: '',
@@ -34,7 +31,7 @@ const newJob = () => {
     e.preventDefault()
     try {
       console.log(file, upload_preset)
-      const sendImage = await fetch(cloudinary_url, {
+      const sendImage = await fetch('cloudinary://834386741212594:qW3J3xQEYJHBwXuRgbncvcTplQM@dwzx5ivan', {
         method: 'POST',
         body: JSON.stringify({
           file,
