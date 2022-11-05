@@ -1,6 +1,6 @@
 import { dbConnect } from 'utils/mongoose'
 import { getAllSections, postSection } from 'utils/apiFunctions'
-import { createRouter } from 'next-connect'
+import { createRouter, expressWrapper } from 'next-connect'
 import { handler } from 'utils/handler'
 
 dbConnect()

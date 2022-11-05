@@ -4,9 +4,9 @@ import path from "path";
 
 const router = createRouter();
 
-let storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public");
+    cb(null, "public/images");
   },
   filename: function (req, file, cb) {
     cb(
@@ -17,7 +17,7 @@ let storage = multer.diskStorage({
 });
 
 let upload = multer({
-  storage,
+  storage: storage,
 });
 
 let uploadFile = upload.single("file");
@@ -27,13 +27,13 @@ router.use(uploadFile);
 router.post(async (req, res) => {
   console.log("req.file", req.file);
   console.log("req.body", req.body);
-  let url = "http://" + req.headers.host;
-  let filename = req.file.filename;
-  console.log(filename)
-  res.status(200).send({
-    result: result,
-    url: url + "/public/" + req.file.filename,
-  });
+  // let url = "http://" + req.headers.host;
+  // let filename = req.file.filename;
+  // console.log(filename)
+  // res.status(200).send({
+  //   result: result,
+  //   url: url + "/public/" + req.file.filename,
+  // });
 });
 
 router.get((req, res) => {

@@ -17,7 +17,7 @@ const newJob = () => {
     description: ''
   })
 
-  const [file, setFile] = useState()
+  const [file, setFile] = useState(null)
   const [pathImage, setPathImage] = useState('')
 
   const handleChange = (e) => {
@@ -30,8 +30,6 @@ const newJob = () => {
   const sendImage = () => {
     e.preventDefault()
     try {
-
-
 
       setNewJob({
         name: '',
@@ -47,11 +45,13 @@ const newJob = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     try {
-      console.log(file)
       const sendImage = await fetch('/api/uploader', {
         method: 'POST',
         body: JSON.stringify({
+          newJob,
+          seccion,
           file
         }),
         headers: {
@@ -101,7 +101,7 @@ const newJob = () => {
         }
 
         setFile(file)
-      } else console.log('No es una imagen.')
+      } else window.alert('No es una imagen.')
     }
   }
 
@@ -141,7 +141,7 @@ const newJob = () => {
             <input
               name='image'
               type='file'
-              accept='image/png, .jpeg, .jpg, image/gif'
+              accept='image/*'
               placeholder='Imagen del trabajo'
               value={newJob.image}
               className={styles.input}
@@ -150,7 +150,10 @@ const newJob = () => {
               required
             />
           </div>
-          <button type='submit' className={styles.button}>Crear</button>
+          <button
+            type='submit'
+            className={styles.button}
+          >Crear</button>
         </form>
       </div>
     </>
