@@ -1,3 +1,4 @@
+import axios from 'axios'
 import Head from 'next/head'
 import Image from 'next/image'
 
@@ -17,7 +18,7 @@ const newJob = () => {
     description: ''
   })
 
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState()
   const [pathImage, setPathImage] = useState('')
 
   const handleChange = (e) => {
@@ -47,17 +48,9 @@ const newJob = () => {
     e.preventDefault()
 
     try {
-      const sendImage = await fetch('/api/uploader', {
-        method: 'POST',
-        body: JSON.stringify({
-          newJob,
-          seccion,
-          file
-        }),
-        headers: {
-          'Content-type': 'multipart'
-        }
-      })
+      const sendImage = await axios.post('/api/uploader', file)
+
+      console.log(sendImage)
 
       if (sendImage.status === 200) {
         console.log(sendImage)
@@ -84,24 +77,29 @@ const newJob = () => {
   }
 
   const onFileChange = (e) => {
+    let file = e.target.files[0];
+
+    setFile(file)
+
     setNewJob({
       ...newJob,
       [e.target.name]: e.target.value
     })
 
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0]
+    //   if (e.target.files && e.target.files.length > 0) {
+    //     const file = e.target.files[0]
 
-      if (file.type.includes('image')) {
-        const reader = new FileReader()
-        reader.readAsDataURL(file)
+    if (file.type.includes('image')) {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
 
-        reader.onload = () => {
-          setPathImage(reader.result)
-        }
+      reader.onload = () => {
+        setPathImage(reader.result)
+      }
 
-        setFile(file)
-      } else window.alert('No es una imagen.')
+      //       setFile(file)
+      //     } else window.alert('No es una imagen.')
+      //   }
     }
   }
 

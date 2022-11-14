@@ -1,12 +1,13 @@
 import { createRouter } from "next-connect";
 import multer from "multer";
 import path from "path";
+import { handler } from "utils/handler";
 
 const router = createRouter();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public/images");
+    cb(null, __dirname + '/public/images');
   },
   filename: function (req, file, cb) {
     cb(
@@ -25,27 +26,22 @@ let uploadFile = upload.single("file");
 router.use(uploadFile);
 
 router.post(async (req, res) => {
-  console.log("req.file", req.file);
+  console.log("req.file", req.files);
   console.log("req.body", req.body);
+
   // let url = "http://" + req.headers.host;
-  // let filename = req.file.filename;
-  // console.log(filename)
+  // let { filename = "no hay xdn't" } = req.file;
+  // console.log(file.originalname)
   // res.status(200).send({
   //   result: result,
   //   url: url + "/public/" + req.file.filename,
   // });
+
+  return res.send('Enviado')
 });
 
 router.get((req, res) => {
   res.json('Hello world!')
 })
 
-export default router.handler({
-  onError: (err, req, res) => {
-    console.error(err.stack);
-    res.status(500).end("Something broke!");
-  },
-  onNoMatch: (req, res) => {
-    res.status(404).end("Page is not found");
-  },
-});
+export default router.handler(handler);
